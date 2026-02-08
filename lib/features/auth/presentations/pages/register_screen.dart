@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/features/auth/presentations/cubit/register_cubit.dart';
+import 'package:mobile/features/auth/presentations/widgets/register_form_section.dart';
+
+import '../../../../core/constants/constant_sizes.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -9,24 +12,27 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> with RegisterCubit {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Register')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          crossAxisAlignment: .center,
-          children: [
-            ElevatedButton(
-              onPressed: () => onRegisterPressed(context),
-              child: Text('Register'),
-            ),
-            TextButton(
-              onPressed: () => onLoginPressed(context),
-              child: Text('Login'),
-            ),
-          ],
+      body: Padding(
+        padding: EdgeInsets.all(ConstantSizes.defaultPadding),
+        child: RegisterFormSection(
+          emailController: emailController,
+          passwordController: passwordController,
+          onLoginPressed: () => onLoginPressed(context),
+          onRegisterPressed: () => onRegisterPressed(context),
         ),
       ),
     );

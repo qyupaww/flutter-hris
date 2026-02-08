@@ -64,7 +64,7 @@ class AppInput extends StatelessWidget {
             filled: true,
             fillColor: context.containerColor,
             contentPadding: EdgeInsets.symmetric(
-              horizontal: 16.w,
+              horizontal: 12.w,
               vertical: 16.h,
             ),
             suffixIcon: suffixIcon,
