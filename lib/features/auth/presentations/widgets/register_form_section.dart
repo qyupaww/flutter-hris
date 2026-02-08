@@ -63,7 +63,16 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
               controller: widget.emailController,
             ),
             SizedBox(height: 16.h),
-            AppInput(label: 'Company', hint: 'Select your company'),
+            AppInput(
+              label: 'Company',
+              hint: 'Select your company',
+              readOnly: true,
+              onTap: () {},
+              suffixIcon: Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: PColor().grey,
+              ),
+            ),
             SizedBox(height: 16.h),
             AppInput(
               label: 'NIP',
@@ -108,7 +117,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                   ),
                 ),
                 TextButton(
-                  onPressed: widget.onRegisterPressed,
+                  onPressed: widget.onLoginPressed,
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
                     minimumSize: Size.zero,
