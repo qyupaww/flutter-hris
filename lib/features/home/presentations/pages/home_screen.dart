@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/themes/theme.dart';
-import '../../../../utils/theme_manager.dart';
+import '../../../../core/components/organisms/attendance_card.dart';
+import '../../../../core/constants/constant_sizes.dart';
+import '../../../../core/themes/color_theme.dart';
+import '../../../../extension/app_color_extension.dart';
+import '../widgets/home_header_section.dart';
+import '../widgets/home_live_time_section.dart';
+import '../widgets/home_location_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,43 +20,30 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: [
-          IconButton(
-            icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
-            tooltip: isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode',
-            onPressed: () => ThemeManager().toggleTheme(),
+      backgroundColor: context.isDark
+          ? PColor().backgroundDark
+          : PColor().white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(ConstantSizes.defaultPadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const HomeHeaderSection(),
+              SizedBox(height: 32.h),
+              const HomeLiveTimeSection(),
+              SizedBox(height: 32.h),
+              const HomeLocationCard(),
+              SizedBox(height: 24.h),
+              AttendanceCard(
+                onCheckOutPressed: () {
+                  context.pushNamed('detail');
+                },
+              ),
+              SizedBox(height: 20.h),
+            ],
           ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/splash.png'),
-            Text(
-              'Nafanesia Academy',
-              style: MyTheme.style.semiBold.copyWith(fontSize: 20.sp),
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              'Engineering Exellence',
-              style: MyTheme.style.medium.copyWith(fontSize: 16.sp),
-              textAlign: TextAlign.center,
-            ),
-
-            ElevatedButton(
-              onPressed: () {
-                context.pushNamed('detail');
-              },
-              child: const Text('Detail'),
-            ),
-          ],
         ),
       ),
     );
