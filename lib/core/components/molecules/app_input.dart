@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mobile/core/constants/constant_sizes.dart';
-import 'package:mobile/core/themes/color_theme.dart';
-import 'package:mobile/core/themes/theme.dart';
-import 'package:mobile/extension/app_color_extension.dart';
+
+import '../../../extension/app_color_extension.dart';
+import '../../constants/constant_sizes.dart';
+import '../../themes/color_theme.dart';
+import '../../themes/theme.dart';
 
 class AppInput extends StatelessWidget {
   final String label;

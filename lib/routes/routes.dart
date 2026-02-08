@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile/core/constants/constant_routes.dart';
-import 'package:mobile/routes/features/auth_routes.dart';
-import 'package:mobile/routes/features/main_routes.dart';
-import 'package:mobile/routes/features/splash_routes.dart';
+
+import '../core/constants/constant_routes.dart';
+import 'features/auth_routes.dart';
+import 'features/main_routes.dart';
+import 'features/splash_routes.dart';
 
 GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 

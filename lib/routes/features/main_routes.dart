@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile/core/constants/constant_routes.dart';
-import 'package:mobile/features/home/presentations/pages/home_screen.dart';
-import 'package:mobile/features/main/presentations/pages/main_screen.dart';
-import 'package:mobile/routes/routes.dart';
+
+import '../../core/constants/constant_routes.dart';
+import '../../features/home/presentations/pages/home_screen.dart';
+import '../../features/main/presentations/pages/main_screen.dart';
+import '../routes.dart';
 
 List<RouteBase> mainRoutes = [
   StatefulShellRoute.indexedStack(

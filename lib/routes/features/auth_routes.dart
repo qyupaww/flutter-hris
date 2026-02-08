@@ -1,7 +1,8 @@
 import 'package:go_router/go_router.dart';
-import 'package:mobile/core/constants/constant_routes.dart';
-import 'package:mobile/features/auth/presentations/pages/login_screen.dart';
-import 'package:mobile/features/auth/presentations/pages/register_screen.dart';
+
+import '../../core/constants/constant_routes.dart';
+import '../../features/auth/presentations/pages/login_screen.dart';
+import '../../features/auth/presentations/pages/register_screen.dart';
 
 List<RouteBase> authRoutes = [
   GoRoute(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/core/constants/constant_sizes.dart';
-import 'package:mobile/features/auth/presentations/cubit/login_cubit.dart';
-import 'package:mobile/features/auth/presentations/widgets/login_form_section.dart';
+
+import '../../../../core/constants/constant_sizes.dart';
+import '../cubit/login_cubit.dart';
+import '../widgets/login_form_section.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

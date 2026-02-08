@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/features/splash/presentations/cubit/splash_cubit.dart';
+
+import '../cubit/splash_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
