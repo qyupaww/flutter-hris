@@ -11,12 +11,14 @@ class AppButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
   final AppButtonVariant variant;
+  final double? width;
 
   const AppButton({
     super.key,
     required this.label,
     required this.onPressed,
     this.variant = AppButtonVariant.primary,
+    this.width = double.infinity,
   });
 
   @override
@@ -26,7 +28,7 @@ class AppButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: PColor().black,
-          minimumSize: Size(double.infinity, 54.h),
+          minimumSize: Size(width ?? double.infinity, 54.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(ConstantSizes.defaultRadius),
           ),
@@ -47,7 +49,7 @@ class AppButton extends StatelessWidget {
         style: OutlinedButton.styleFrom(
           foregroundColor: Theme.of(context).primaryColor,
           side: BorderSide(color: context.greyDarkColor),
-          minimumSize: Size(double.infinity, 54.h),
+          minimumSize: Size(width ?? double.infinity, 54.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(ConstantSizes.defaultRadius),
           ),
@@ -66,7 +68,7 @@ class AppButton extends StatelessWidget {
     return TextButton(
       style: TextButton.styleFrom(
         foregroundColor: Theme.of(context).primaryColor,
-        minimumSize: Size(double.infinity, 54.h),
+        minimumSize: Size(width ?? double.infinity, 54.h),
       ),
       onPressed: onPressed,
       child: Text(
