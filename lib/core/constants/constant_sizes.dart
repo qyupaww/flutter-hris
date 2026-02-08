@@ -1,4 +1,6 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 abstract class ConstantSizes {
-  static const double defaultPadding = 16.0;
-  static const double defaultRadius = 12.0;
+  static final double defaultPadding = 16.w;
+  static final double defaultRadius = 12.r;
 }
