@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mobile/config/app_config.dart';
-import 'package:mobile/routes/routes.dart';
-import 'package:mobile/utils/theme.manager.dart';
+
+import 'config/app_config.dart';
+import 'routes/routes.dart';
+import 'utils/theme_manager.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
