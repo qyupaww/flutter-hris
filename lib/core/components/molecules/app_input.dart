@@ -32,7 +32,7 @@ class AppInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final isDarkMode = context.isDark;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
