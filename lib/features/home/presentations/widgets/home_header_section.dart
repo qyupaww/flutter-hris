@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mobile/core/components/atoms/app_badge.dart';
-import 'package:mobile/core/themes/color_theme.dart';
-import 'package:mobile/core/themes/theme.dart';
-import 'package:mobile/extension/app_color_extension.dart';
-import 'package:mobile/utils/theme_manager.dart';
+
+import '../../../../core/components/atoms/app_badge.dart';
+import '../../../../core/themes/color_theme.dart';
+import '../../../../core/themes/theme.dart';
+import '../../../../extension/app_color_extension.dart';
+import '../../../../utils/theme_manager.dart';
 
 class HomeHeaderSection extends StatelessWidget {
   const HomeHeaderSection({super.key});
