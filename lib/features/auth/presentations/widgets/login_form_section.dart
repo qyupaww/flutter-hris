@@ -34,7 +34,6 @@ class _LoginFormSectionState extends State<LoginFormSection> {
       child: Center(
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
