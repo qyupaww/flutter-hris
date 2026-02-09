@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/constants/constant_routes.dart';
-import '../pages/register_screen.dart';
+import 'package:flutter_hris/core/constants/constant_routes.dart';
+import 'package:flutter_hris/features/auth/presentations/pages/register_screen.dart';
 
 mixin RegisterCubit on State<RegisterScreen> {
   @override

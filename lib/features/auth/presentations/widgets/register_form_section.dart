@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/components/atoms/custom_button.dart';
-import '../../../../core/components/molecules/app_input.dart';
-import '../../../../core/themes/color_theme.dart';
-import '../../../../core/themes/theme.dart';
-import '../../../../extension/app_color_extension.dart';
+import 'package:flutter_hris/core/components/atoms/custom_button.dart';
+import 'package:flutter_hris/core/components/molecules/app_input.dart';
+import 'package:flutter_hris/core/themes/color_theme.dart';
+import 'package:flutter_hris/core/themes/theme.dart';
+import 'package:flutter_hris/extension/app_color_extension.dart';
 
 class RegisterFormSection extends StatefulWidget {
   final TextEditingController emailController;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../extension/app_color_extension.dart';
-import '../../themes/color_theme.dart';
-import '../../themes/theme.dart';
+import 'package:flutter_hris/extension/app_color_extension.dart';
+import 'package:flutter_hris/core/themes/color_theme.dart';
+import 'package:flutter_hris/core/themes/theme.dart';
 
 class AttendanceItem extends StatelessWidget {
   final String label;

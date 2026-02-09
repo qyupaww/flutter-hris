@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/themes/color_theme.dart';
+import 'package:flutter_hris/core/themes/color_theme.dart';
 
 final _color = PColor();
 

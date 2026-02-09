@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/constant_sizes.dart';
-import '../../../../core/themes/theme.dart';
-import '../cubit/register_cubit.dart';
-import '../widgets/register_form_section.dart';
+import 'package:flutter_hris/core/constants/constant_sizes.dart';
+import 'package:flutter_hris/core/themes/theme.dart';
+import 'package:flutter_hris/features/auth/presentations/cubit/register_cubit.dart';
+import 'package:flutter_hris/features/auth/presentations/widgets/register_form_section.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

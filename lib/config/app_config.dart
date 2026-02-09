@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../core/themes/color_theme.dart';
+import 'package:flutter_hris/core/themes/color_theme.dart';
 
 final _color = PColor();
 

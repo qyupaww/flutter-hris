@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/constants/constant_sizes.dart';
-import '../cubit/login_cubit.dart';
-import '../widgets/login_form_section.dart';
+import 'package:flutter_hris/core/constants/constant_sizes.dart';
+import 'package:flutter_hris/features/auth/presentations/cubit/login_cubit.dart';
+import 'package:flutter_hris/features/auth/presentations/widgets/login_form_section.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

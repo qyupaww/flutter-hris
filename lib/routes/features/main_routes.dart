@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/constants/constant_routes.dart';
-import '../../features/home/presentations/pages/home_screen.dart';
-import '../../features/main/presentations/pages/main_screen.dart';
-import '../routes.dart';
+import 'package:flutter_hris/core/constants/constant_routes.dart';
+import 'package:flutter_hris/features/home/presentations/pages/home_screen.dart';
+import 'package:flutter_hris/features/main/presentations/pages/main_screen.dart';
+import 'package:flutter_hris/routes/routes.dart';
 
 List<RouteBase> mainRoutes = [
   StatefulShellRoute.indexedStack(

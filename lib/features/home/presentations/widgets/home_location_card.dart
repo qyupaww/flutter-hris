@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/components/atoms/app_card.dart';
-import '../../../../core/components/atoms/app_icon_badge.dart';
-import '../../../../core/themes/color_theme.dart';
-import '../../../../core/themes/theme.dart';
-import '../../../../extension/app_color_extension.dart';
+import 'package:flutter_hris/core/components/atoms/app_card.dart';
+import 'package:flutter_hris/core/components/atoms/app_icon_badge.dart';
+import 'package:flutter_hris/core/themes/color_theme.dart';
+import 'package:flutter_hris/core/themes/theme.dart';
+import 'package:flutter_hris/extension/app_color_extension.dart';
 
 class HomeLocationCard extends StatelessWidget {
   const HomeLocationCard({super.key});

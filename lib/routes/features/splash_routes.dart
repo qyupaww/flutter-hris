@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 
-import '../../core/constants/constant_routes.dart';
-import '../../features/splash/presentations/pages/splash_screen.dart';
+import 'package:flutter_hris/core/constants/constant_routes.dart';
+import 'package:flutter_hris/features/splash/presentations/pages/splash_screen.dart';
 
 List<RouteBase> splashRoutes = [
   GoRoute(

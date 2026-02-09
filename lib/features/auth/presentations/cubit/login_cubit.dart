@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/constants/constant_routes.dart';
-import '../pages/login_screen.dart';
+import 'package:flutter_hris/core/constants/constant_routes.dart';
+import 'package:flutter_hris/features/auth/presentations/pages/login_screen.dart';
 
 mixin LoginCubit on State<LoginScreen> {
   @override
