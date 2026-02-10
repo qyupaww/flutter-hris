@@ -83,11 +83,13 @@ class _LoginFormSectionState extends State<LoginFormSection> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Don\'t have an account? ',
-                    style: MyTheme.style.regular.copyWith(
-                      color: Theme.of(context).textTheme.bodyMedium?.color,
-                      fontSize: 14.sp,
+                  Flexible(
+                    child: Text(
+                      'Don\'t have an account? ',
+                      style: MyTheme.style.regular.copyWith(
+                        color: Theme.of(context).textTheme.bodyMedium?.color,
+                        fontSize: 14.sp,
+                      ),
                     ),
                   ),
                   TextButton(

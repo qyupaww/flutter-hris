@@ -109,11 +109,13 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  'Already have an account? ',
-                  style: MyTheme.style.regular.copyWith(
-                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                    fontSize: 14.sp,
+                Flexible(
+                  child: Text(
+                    'Already have an account? ',
+                    style: MyTheme.style.regular.copyWith(
+                      color: Theme.of(context).textTheme.bodyMedium?.color,
+                      fontSize: 14.sp,
+                    ),
                   ),
                 ),
                 TextButton(
@@ -134,6 +136,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                 ),
               ],
             ),
+            SizedBox(height: 24.h),
           ],
         ),
       ),

@@ -23,11 +23,13 @@ class AttendanceCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Status Absensi',
-                style: MyTheme.style.semiBold.copyWith(
-                  color: context.blackWhiteColor,
-                  fontSize: 14.sp,
+              Flexible(
+                child: Text(
+                  'Status Absensi',
+                  style: MyTheme.style.semiBold.copyWith(
+                    color: context.blackWhiteColor,
+                    fontSize: 14.sp,
+                  ),
                 ),
               ),
               AppBadge(
