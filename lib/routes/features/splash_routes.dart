@@ -1,12 +1,12 @@
 import 'package:go_router/go_router.dart';
-
-import 'package:flutter_hris/core/constants/constant_routes.dart';
-import 'package:flutter_hris/features/splash/presentations/pages/splash_screen.dart';
+import 'package:morpheme_flutter_lite/core/constants/constant_routes.dart';
+import 'package:morpheme_flutter_lite/features/splash/splash/presentation/pages/splash_page.dart';
+import 'package:morpheme_flutter_lite/routes/helper/helper_routes.dart';
 
 List<RouteBase> splashRoutes = [
   GoRoute(
     name: ConstantRoutes.splash,
-    path: ConstantRoutes.splash,
-    builder: (context, state) => const SplashScreen(),
+    path: joinRoutes([ConstantRoutes.splash]),
+    builder: (context, state) => const SplashPage(),
   ),
 ];

@@ -1,0 +1,8 @@
+{
+    "company_id": 0,
+    "division": "string",
+    "email": "string",
+    "full_name": "string",
+    "nip": "string",
+    "password": "string"
+}

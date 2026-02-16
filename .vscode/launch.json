@@ -1,0 +1,188 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Morpheme Debug Dev",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+				"FLAVOR=dev",
+				"--dart-define",
+				"APP_NAME=Morpheme Lite Dev",
+				"--dart-define",
+				"ANDROID_APPLICATION_ID=design.morpheme_lite.dev",
+				"--dart-define",
+				"IOS_APPLICATION_ID=design.morphemeLite.dev",
+				"--dart-define",
+				"BASE_URL=https://api-academy.nafanesia.id"
+            ]
+        },
+        {
+            "name": "Morpheme Profile Dev",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+				"FLAVOR=dev",
+				"--dart-define",
+				"APP_NAME=Morpheme Lite Dev",
+				"--dart-define",
+				"ANDROID_APPLICATION_ID=design.morpheme_lite.dev",
+				"--dart-define",
+				"IOS_APPLICATION_ID=design.morphemeLite.dev",
+				"--dart-define",
+				"BASE_URL=https://api-academy.nafanesia.id"
+            ]
+        },
+        {
+            "name": "Morpheme Release Dev",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+				"FLAVOR=dev",
+				"--dart-define",
+				"APP_NAME=Morpheme Lite Dev",
+				"--dart-define",
+				"ANDROID_APPLICATION_ID=design.morpheme_lite.dev",
+				"--dart-define",
+				"IOS_APPLICATION_ID=design.morphemeLite.dev",
+				"--dart-define",
+				"BASE_URL=https://api-academy.nafanesia.id"
+            ]
+        },
+        {
+            "name": "Morpheme Debug Stag",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+				"FLAVOR=stag",
+				"--dart-define",
+				"APP_NAME=Morpheme Lite Stag",
+				"--dart-define",
+				"ANDROID_APPLICATION_ID=design.morpheme_lite.stag",
+				"--dart-define",
+				"IOS_APPLICATION_ID=design.morphemeLite.stag",
+				"--dart-define",
+				"BASE_URL=https://api-academy.nafanesia.id"
+            ]
+        },
+        {
+            "name": "Morpheme Profile Stag",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+				"FLAVOR=stag",
+				"--dart-define",
+				"APP_NAME=Morpheme Lite Stag",
+				"--dart-define",
+				"ANDROID_APPLICATION_ID=design.morpheme_lite.stag",
+				"--dart-define",
+				"IOS_APPLICATION_ID=design.morphemeLite.stag",
+				"--dart-define",
+				"BASE_URL=https://api-academy.nafanesia.id"
+            ]
+        },
+        {
+            "name": "Morpheme Release Stag",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+				"FLAVOR=stag",
+				"--dart-define",
+				"APP_NAME=Morpheme Lite Stag",
+				"--dart-define",
+				"ANDROID_APPLICATION_ID=design.morpheme_lite.stag",
+				"--dart-define",
+				"IOS_APPLICATION_ID=design.morphemeLite.stag",
+				"--dart-define",
+				"BASE_URL=https://api-academy.nafanesia.id"
+            ]
+        },
+        {
+            "name": "Morpheme Debug Prod",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+				"FLAVOR=prod",
+				"--dart-define",
+				"APP_NAME=Morpheme Lite",
+				"--dart-define",
+				"ANDROID_APPLICATION_ID=design.morpheme_lite",
+				"--dart-define",
+				"IOS_APPLICATION_ID=design.morphemeLite",
+				"--dart-define",
+				"BASE_URL=https://api-academy.nafanesia.id"
+            ]
+        },
+        {
+            "name": "Morpheme Profile Prod",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+				"FLAVOR=prod",
+				"--dart-define",
+				"APP_NAME=Morpheme Lite",
+				"--dart-define",
+				"ANDROID_APPLICATION_ID=design.morpheme_lite",
+				"--dart-define",
+				"IOS_APPLICATION_ID=design.morphemeLite",
+				"--dart-define",
+				"BASE_URL=https://api-academy.nafanesia.id"
+            ]
+        },
+        {
+            "name": "Morpheme Release Prod",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+				"FLAVOR=prod",
+				"--dart-define",
+				"APP_NAME=Morpheme Lite",
+				"--dart-define",
+				"ANDROID_APPLICATION_ID=design.morpheme_lite",
+				"--dart-define",
+				"IOS_APPLICATION_ID=design.morphemeLite",
+				"--dart-define",
+				"BASE_URL=https://api-academy.nafanesia.id"
+            ]
+        },
+    ]
+}

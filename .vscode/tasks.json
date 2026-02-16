@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "firebase-dev",
+            "command": "morpheme_lite firebase -f dev",
+            "type": "shell"
+        },
+        {
+            "label": "build-dev",
+            "dependsOn": [
+                "firebase-dev",
+            ],
+        },
+        {
+            "label": "firebase-stag",
+            "command": "morpheme_lite firebase -f stag",
+            "type": "shell"
+        },
+        {
+            "label": "build-stag",
+            "dependsOn": [
+                "firebase-stag",
+            ],
+        },
+        {
+            "label": "firebase-prod",
+            "command": "morpheme_lite firebase -f prod",
+            "type": "shell"
+        },
+        {
+            "label": "build-prod",
+            "dependsOn": [
+                "firebase-prod",
+            ],
+        },
+    ]
+}

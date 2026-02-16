@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "nafanesiaWork": "Nafanesia Work",
+  "engineeringExcellence": "Engineering Excellence",
+  "language": "Language",
+  "theme": "Theme",
+  "oke": "Oke",
+  "cancel": "Cancel",
+  "agree": "Agree",
+  "somethingWentWrong": "Something went wrong",
+  "noInternet": "No internet",
+  "emptyStateDescription": "Sorry, we couldn't find any results for your search. Try using another keyword.",
+  "emptyStateTitle": "No results found"
+}

@@ -1,0 +1,129 @@
+import 'package:morpheme_flutter_lite/core/components/components.dart';
+import 'package:morpheme_flutter_lite/features/auth/register/data/models/body/list_company_body.dart';
+import 'package:morpheme_flutter_lite/features/auth/register/domain/entities/list_company_entity.dart';
+import 'package:morpheme_flutter_lite/features/auth/register/presentation/bloc/list_company/list_company_bloc.dart';
+// ignore_for_file: unnecessary_overrides
+
+import 'package:morpheme_flutter_lite/core/constants/constant_routes.dart';
+import 'package:morpheme_flutter_lite/core/extensions/morpheme_failure_extension.dart';
+import 'package:morpheme_flutter_lite/features/auth/register/data/models/body/register_body.dart';
+import 'package:morpheme_flutter_lite/features/auth/register/presentation/bloc/register/register_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:morpheme_base/morpheme_base.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+
+import '../pages/register_page.dart';
+
+part 'register_state.dart';
+
+class RegisterCubit extends MorphemeCubit<RegisterStateCubit> {
+  RegisterCubit({required this.listCompanyBloc, required this.registerBloc})
+    : super(RegisterStateCubit());
+
+  final ListCompanyBloc listCompanyBloc;
+  final RegisterBloc registerBloc;
+
+  final fullNameKey = GlobalKey<MoleculeTextFieldState>();
+  final emailKey = GlobalKey<MoleculeTextFieldState>();
+  final nipKey = GlobalKey<MoleculeTextFieldState>();
+  final divisionKey = GlobalKey<MoleculeTextFieldState>();
+  final passwordKey = GlobalKey<MoleculeTextFieldState>();
+
+  final companyKey = GlobalKey<MoleculeDropdownState<DataListCompany>>();
+
+  @override
+  void initState(BuildContext context) {
+    super.initState(context);
+    fetchListCompany();
+  }
+
+  @override
+  void initAfterFirstLayout(BuildContext context) {
+    super.initAfterFirstLayout(context);
+  }
+
+  @override
+  void initArgument<T>(BuildContext context, T widget) {
+    super.initArgument(context, widget);
+    if (widget is! RegisterPage) return;
+  }
+
+  @override
+  void didChangeDependencies(BuildContext context) {
+    super.didChangeDependencies(context);
+  }
+
+  @override
+  List<BlocProvider> blocProviders(BuildContext context) => [
+    BlocProvider<RegisterBloc>.value(value: registerBloc),
+    BlocProvider<ListCompanyBloc>.value(value: listCompanyBloc),
+  ];
+  @override
+  List<BlocListener> blocListeners(BuildContext context) => [
+    BlocListener<RegisterBloc, RegisterState>(listener: listenerRegisterBloc),
+    BlocListener<ListCompanyBloc, ListCompanyState>(
+      listener: listenerListCompanyBloc,
+    ),
+  ];
+  @override
+  void dispose() {
+    listCompanyBloc.close();
+    registerBloc.close();
+    super.dispose();
+  }
+
+  void onRegisterPressed(BuildContext context) {
+    if (fullNameKey.validate() &&
+        emailKey.validate() &&
+        nipKey.validate() &&
+        divisionKey.validate() &&
+        passwordKey.validate() &&
+        companyKey.validate()) {
+      fetchRegister();
+    }
+  }
+
+  void onLoginPressed(BuildContext context) {
+    context.pop();
+  }
+
+  void fetchListCompany() {
+    listCompanyBloc.add(FetchListCompany(ListCompanyBody()));
+  }
+
+  void listenerListCompanyBloc(BuildContext context, ListCompanyState state) {
+    state.when(
+      onFailed: (state) => state.failure.showSnackbar(context),
+      onSuccess: (state) {
+        final data = state.data.data ?? [];
+
+        emit(this.state.copyWith(listCompany: data));
+      },
+    );
+  }
+
+  void fetchRegister() {
+    registerBloc.add(
+      FetchRegister(
+        RegisterBody(
+          fullName: fullNameKey.text,
+          email: emailKey.text,
+          nip: nipKey.text,
+          division: divisionKey.text,
+          password: passwordKey.text,
+          companyId: companyKey.value?.id,
+        ),
+      ),
+    );
+  }
+
+  void listenerRegisterBloc(BuildContext context, RegisterState state) {
+    state.when(
+      onFailed: (state) => state.failure.showSnackbar(context),
+      onSuccess: (state) {
+        context.goNamed(ConstantRoutes.home);
+      },
+    );
+  }
+}
