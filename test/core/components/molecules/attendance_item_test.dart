@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_hris/core/components/molecules/attendance_item.dart';
+import 'package:flutter_hris/core/components/molecules/molecule_attendance_item.dart';
 import '../../../helpers/test_helpers.dart';
 
 void main() {
-  group('AttendanceItem Widget Tests', () {
+  group('MoleculeAttendanceItem Widget Tests', () {
     testWidgets('renders check-in item with label, time, and status', (
       tester,
     ) async {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AttendanceItem(
+          const MoleculeAttendanceItem(
             label: 'JAM MASUK',
             time: '08:00',
             status: 'Tepat Waktu',
@@ -32,7 +32,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AttendanceItem(
+          const MoleculeAttendanceItem(
             label: 'JAM PULANG',
             time: '--:--',
             status: 'Belum Absen',
@@ -53,7 +53,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AttendanceItem(
+          const MoleculeAttendanceItem(
             label: 'JAM MASUK',
             time: '09:00',
             status: 'Terlambat',

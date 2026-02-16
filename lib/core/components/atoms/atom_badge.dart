@@ -4,16 +4,16 @@ import 'package:flutter_hris/core/constants/constant_sizes.dart';
 import 'package:flutter_hris/core/themes/color_theme.dart';
 import 'package:flutter_hris/core/themes/theme.dart';
 
-enum AppBadgeVariant { primary, success, warning, danger, neutral }
+enum AtomBadgeVariant { primary, success, warning, danger, neutral }
 
-class AppBadge extends StatelessWidget {
+class AtomBadge extends StatelessWidget {
   final String label;
-  final AppBadgeVariant variant;
+  final AtomBadgeVariant variant;
 
-  const AppBadge({
+  const AtomBadge({
     super.key,
     required this.label,
-    this.variant = AppBadgeVariant.primary,
+    this.variant = AtomBadgeVariant.primary,
   });
 
   @override
@@ -40,15 +40,15 @@ class AppBadge extends StatelessWidget {
     final colors = PColor();
 
     switch (variant) {
-      case AppBadgeVariant.primary:
+      case AtomBadgeVariant.primary:
         return colors.primary;
-      case AppBadgeVariant.success:
+      case AtomBadgeVariant.success:
         return colors.success;
-      case AppBadgeVariant.warning:
+      case AtomBadgeVariant.warning:
         return colors.warning;
-      case AppBadgeVariant.danger:
+      case AtomBadgeVariant.danger:
         return colors.danger;
-      case AppBadgeVariant.neutral:
+      case AtomBadgeVariant.neutral:
         return colors.grey;
     }
   }

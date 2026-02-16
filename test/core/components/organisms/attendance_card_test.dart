@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_hris/core/components/organisms/attendance_card.dart';
+import 'package:flutter_hris/core/components/organisms/organism_attendance_card.dart';
 import '../../../helpers/test_helpers.dart';
 
 void main() {

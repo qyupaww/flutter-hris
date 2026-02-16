@@ -4,16 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_hris/core/constants/constant_sizes.dart';
 import 'package:flutter_hris/core/themes/color_theme.dart';
 
-enum AppIconVariant { primary, success, warning, danger, neutral }
+enum AtomIconVariant { primary, success, warning, danger, neutral }
 
-class AppIconBox extends StatelessWidget {
+class AtomIconBox extends StatelessWidget {
   final IconData icon;
-  final AppIconVariant variant;
+  final AtomIconVariant variant;
 
-  const AppIconBox({
+  const AtomIconBox({
     super.key,
     required this.icon,
-    this.variant = AppIconVariant.primary,
+    this.variant = AtomIconVariant.primary,
   });
 
   @override
@@ -36,15 +36,15 @@ class AppIconBox extends StatelessWidget {
   Color _getColor() {
     final colors = PColor();
     switch (variant) {
-      case AppIconVariant.primary:
+      case AtomIconVariant.primary:
         return colors.primary;
-      case AppIconVariant.success:
+      case AtomIconVariant.success:
         return colors.success;
-      case AppIconVariant.warning:
+      case AtomIconVariant.warning:
         return colors.warning;
-      case AppIconVariant.danger:
+      case AtomIconVariant.danger:
         return colors.danger;
-      case AppIconVariant.neutral:
+      case AtomIconVariant.neutral:
         return colors.grey;
     }
   }

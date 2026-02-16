@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:flutter_hris/core/components/atoms/app_card.dart';
-import 'package:flutter_hris/core/components/atoms/app_icon_badge.dart';
+import 'package:flutter_hris/core/components/atoms/atom_card.dart';
+import 'package:flutter_hris/core/components/atoms/atom_icon_badge.dart';
 import 'package:flutter_hris/core/themes/color_theme.dart';
 import 'package:flutter_hris/core/themes/theme.dart';
 import 'package:flutter_hris/extension/app_color_extension.dart';
@@ -12,12 +12,12 @@ class HomeLocationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
+    return AtomCard(
       child: Row(
         children: [
-          const AppIconBox(
+          const AtomIconBox(
             icon: Icons.navigation,
-            variant: AppIconVariant.primary,
+            variant: AtomIconVariant.primary,
           ),
           SizedBox(width: 16.w),
           Expanded(

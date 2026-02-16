@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_hris/core/components/atoms/custom_button.dart';
+import 'package:flutter_hris/core/components/atoms/atom_custom_button.dart';
 import '../../../helpers/test_helpers.dart';
 
 void main() {
-  group('AppButton Widget Tests', () {
-    testWidgets('renders AppButton with correct label', (tester) async {
+  group('AtomButton Widget Tests', () {
+    testWidgets('renders AtomButton with correct label', (tester) async {
       setTestScreenSize(tester);
       await tester.pumpWidget(
-        createTestableWidget(AppButton(label: 'Test Button', onPressed: () {})),
+        createTestableWidget(
+          AtomButton(label: 'Test Button', onPressed: () {}),
+        ),
       );
       await tester.pumpAndSettle();
 
@@ -16,13 +18,13 @@ void main() {
       resetTestScreenSize(tester);
     });
 
-    testWidgets('triggers onPressed callback when tapped', (tester) async {
+    testWidgets('triggers onPressed callback when tAtomed', (tester) async {
       setTestScreenSize(tester);
       bool isPressed = false;
 
       await tester.pumpWidget(
         createTestableWidget(
-          AppButton(label: 'Test Button', onPressed: () => isPressed = true),
+          AtomButton(label: 'Test Button', onPressed: () => isPressed = true),
         ),
       );
       await tester.pumpAndSettle();
@@ -39,7 +41,7 @@ void main() {
     ) async {
       setTestScreenSize(tester);
       await tester.pumpWidget(
-        createTestableWidget(AppButton(label: 'Primary', onPressed: () {})),
+        createTestableWidget(AtomButton(label: 'Primary', onPressed: () {})),
       );
       await tester.pumpAndSettle();
 
@@ -51,10 +53,10 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          AppButton(
+          AtomButton(
             label: 'Secondary',
             onPressed: () {},
-            variant: AppButtonVariant.secondary,
+            variant: AtomButtonVariant.secondary,
           ),
         ),
       );
@@ -68,10 +70,10 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          AppButton(
+          AtomButton(
             label: 'Tertiary',
             onPressed: () {},
-            variant: AppButtonVariant.tertiary,
+            variant: AtomButtonVariant.tertiary,
           ),
         ),
       );

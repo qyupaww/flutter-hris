@@ -4,10 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_hris/extension/app_color_extension.dart';
 import 'package:flutter_hris/core/themes/color_theme.dart';
 import 'package:flutter_hris/core/themes/theme.dart';
-import 'package:flutter_hris/core/components/atoms/app_badge.dart';
-import 'package:flutter_hris/core/components/atoms/app_card.dart';
-import 'package:flutter_hris/core/components/atoms/custom_button.dart';
-import 'package:flutter_hris/core/components/molecules/attendance_item.dart';
+import 'package:flutter_hris/core/components/atoms/atom_badge.dart';
+import 'package:flutter_hris/core/components/atoms/atom_card.dart';
+import 'package:flutter_hris/core/components/atoms/atom_custom_button.dart';
+import 'package:flutter_hris/core/components/molecules/molecule_attendance_item.dart';
 
 class AttendanceCard extends StatelessWidget {
   final VoidCallback onCheckOutPressed;
@@ -16,7 +16,7 @@ class AttendanceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
+    return AtomCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,9 +32,9 @@ class AttendanceCard extends StatelessWidget {
                   ),
                 ),
               ),
-              AppBadge(
+              AtomBadge(
                 label: 'SUDAH CHECK-IN',
-                variant: AppBadgeVariant.warning,
+                variant: AtomBadgeVariant.warning,
               ),
             ],
           ),
@@ -42,7 +42,7 @@ class AttendanceCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: AttendanceItem(
+                child: MoleculeAttendanceItem(
                   label: 'JAM MASUK',
                   time: '08:00',
                   status: 'Tepat Waktu',
@@ -56,7 +56,7 @@ class AttendanceCard extends StatelessWidget {
               ),
               SizedBox(width: 16.w),
               Expanded(
-                child: AttendanceItem(
+                child: MoleculeAttendanceItem(
                   label: 'JAM PULANG',
                   time: '--:--',
                   status: 'Belum Absen',
@@ -66,10 +66,10 @@ class AttendanceCard extends StatelessWidget {
             ],
           ),
           SizedBox(height: 24.h),
-          AppButton(
+          AtomButton(
             label: 'Check Out Sekarang',
             onPressed: onCheckOutPressed,
-            variant: AppButtonVariant.primary,
+            variant: AtomButtonVariant.primary,
           ),
           SizedBox(height: 12.h),
           Center(

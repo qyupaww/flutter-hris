@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_hris/core/components/atoms/app_badge.dart';
+import 'package:flutter_hris/core/components/atoms/atom_badge.dart';
 import '../../../helpers/test_helpers.dart';
 
 void main() {
-  group('AppBadge Widget Tests', () {
+  group('AtomBadge Widget Tests', () {
     testWidgets('renders badge with correct label', (tester) async {
       setTestScreenSize(tester);
       await tester.pumpWidget(
-        createTestableWidget(const AppBadge(label: 'Active')),
+        createTestableWidget(const AtomBadge(label: 'Active')),
       );
       await tester.pumpAndSettle();
 
@@ -18,12 +18,12 @@ void main() {
     testWidgets('renders primary variant by default', (tester) async {
       setTestScreenSize(tester);
       await tester.pumpWidget(
-        createTestableWidget(const AppBadge(label: 'Primary')),
+        createTestableWidget(const AtomBadge(label: 'Primary')),
       );
       await tester.pumpAndSettle();
 
-      final badge = tester.widget<AppBadge>(find.byType(AppBadge));
-      expect(badge.variant, AppBadgeVariant.primary);
+      final badge = tester.widget<AtomBadge>(find.byType(AtomBadge));
+      expect(badge.variant, AtomBadgeVariant.primary);
       resetTestScreenSize(tester);
     });
 
@@ -31,7 +31,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AppBadge(label: 'Success', variant: AppBadgeVariant.success),
+          const AtomBadge(label: 'Success', variant: AtomBadgeVariant.success),
         ),
       );
       await tester.pumpAndSettle();
@@ -44,7 +44,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AppBadge(label: 'Warning', variant: AppBadgeVariant.warning),
+          const AtomBadge(label: 'Warning', variant: AtomBadgeVariant.warning),
         ),
       );
       await tester.pumpAndSettle();
@@ -57,7 +57,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AppBadge(label: 'Danger', variant: AppBadgeVariant.danger),
+          const AtomBadge(label: 'Danger', variant: AtomBadgeVariant.danger),
         ),
       );
       await tester.pumpAndSettle();
@@ -70,7 +70,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AppBadge(label: 'Neutral', variant: AppBadgeVariant.neutral),
+          const AtomBadge(label: 'Neutral', variant: AtomBadgeVariant.neutral),
         ),
       );
       await tester.pumpAndSettle();

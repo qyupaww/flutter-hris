@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:flutter_hris/core/components/atoms/app_badge.dart';
+import 'package:flutter_hris/core/components/atoms/atom_badge.dart';
 import 'package:flutter_hris/core/themes/color_theme.dart';
 import 'package:flutter_hris/core/themes/theme.dart';
 import 'package:flutter_hris/extension/app_color_extension.dart';
@@ -36,9 +36,9 @@ class HomeHeaderSection extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8.h),
-            const AppBadge(
+            const AtomBadge(
               label: 'Mobile Developer',
-              variant: AppBadgeVariant.warning,
+              variant: AtomBadgeVariant.warning,
             ),
           ],
         ),

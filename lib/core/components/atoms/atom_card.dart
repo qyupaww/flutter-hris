@@ -5,11 +5,11 @@ import 'package:flutter_hris/extension/app_color_extension.dart';
 import 'package:flutter_hris/core/constants/constant_sizes.dart';
 import 'package:flutter_hris/core/themes/color_theme.dart';
 
-class AppCard extends StatelessWidget {
+class AtomCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry? padding;
 
-  const AppCard({super.key, required this.child, this.padding});
+  const AtomCard({super.key, required this.child, this.padding});
 
   @override
   Widget build(BuildContext context) {

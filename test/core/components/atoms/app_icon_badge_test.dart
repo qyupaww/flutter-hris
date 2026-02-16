@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_hris/core/components/atoms/app_icon_badge.dart';
+import 'package:flutter_hris/core/components/atoms/atom_icon_badge.dart';
 import '../../../helpers/test_helpers.dart';
 
 void main() {
-  group('AppIconBox Widget Tests', () {
+  group('AtomIconBox Widget Tests', () {
     testWidgets('renders icon correctly', (tester) async {
       setTestScreenSize(tester);
       await tester.pumpWidget(
-        createTestableWidget(const AppIconBox(icon: Icons.access_time)),
+        createTestableWidget(const AtomIconBox(icon: Icons.access_time)),
       );
       await tester.pumpAndSettle();
 
@@ -19,12 +19,12 @@ void main() {
     testWidgets('renders primary variant by default', (tester) async {
       setTestScreenSize(tester);
       await tester.pumpWidget(
-        createTestableWidget(const AppIconBox(icon: Icons.home)),
+        createTestableWidget(const AtomIconBox(icon: Icons.home)),
       );
       await tester.pumpAndSettle();
 
-      final iconBox = tester.widget<AppIconBox>(find.byType(AppIconBox));
-      expect(iconBox.variant, AppIconVariant.primary);
+      final iconBox = tester.widget<AtomIconBox>(find.byType(AtomIconBox));
+      expect(iconBox.variant, AtomIconVariant.primary);
       resetTestScreenSize(tester);
     });
 
@@ -32,7 +32,10 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AppIconBox(icon: Icons.check, variant: AppIconVariant.success),
+          const AtomIconBox(
+            icon: Icons.check,
+            variant: AtomIconVariant.success,
+          ),
         ),
       );
       await tester.pumpAndSettle();
@@ -45,9 +48,9 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AppIconBox(
+          const AtomIconBox(
             icon: Icons.warning,
-            variant: AppIconVariant.warning,
+            variant: AtomIconVariant.warning,
           ),
         ),
       );
@@ -61,7 +64,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AppIconBox(icon: Icons.error, variant: AppIconVariant.danger),
+          const AtomIconBox(icon: Icons.error, variant: AtomIconVariant.danger),
         ),
       );
       await tester.pumpAndSettle();
@@ -74,7 +77,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AppIconBox(icon: Icons.info, variant: AppIconVariant.neutral),
+          const AtomIconBox(icon: Icons.info, variant: AtomIconVariant.neutral),
         ),
       );
       await tester.pumpAndSettle();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_hris/core/components/molecules/app_input.dart';
+import 'package:flutter_hris/core/components/molecules/molecule_input.dart';
 import '../../../helpers/test_helpers.dart';
 
 void main() {

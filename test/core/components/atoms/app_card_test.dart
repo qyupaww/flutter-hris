@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_hris/core/components/atoms/app_card.dart';
+import 'package:flutter_hris/core/components/atoms/atom_card.dart';
 import '../../../helpers/test_helpers.dart';
 
 void main() {
-  group('AppCard Widget Tests', () {
+  group('AtomCard Widget Tests', () {
     testWidgets('renders child widget inside card', (tester) async {
       setTestScreenSize(tester);
       await tester.pumpWidget(
-        createTestableWidget(const AppCard(child: Text('Card Content'))),
+        createTestableWidget(const AtomCard(child: Text('Card Content'))),
       );
       await tester.pumpAndSettle();
 
       expect(find.text('Card Content'), findsOneWidget);
-      expect(find.byType(AppCard), findsOneWidget);
+      expect(find.byType(AtomCard), findsOneWidget);
       resetTestScreenSize(tester);
     });
 
@@ -21,7 +21,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          const AppCard(
+          const AtomCard(
             padding: EdgeInsets.all(32),
             child: Text('Padded Content'),
           ),
@@ -37,7 +37,7 @@ void main() {
       setTestScreenSize(tester);
       await tester.pumpWidget(
         createTestableWidget(
-          AppCard(
+          AtomCard(
             child: Column(children: const [Text('Title'), Text('Subtitle')]),
           ),
         ),

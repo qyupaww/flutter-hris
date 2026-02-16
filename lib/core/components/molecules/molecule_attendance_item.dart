@@ -5,13 +5,13 @@ import 'package:flutter_hris/extension/app_color_extension.dart';
 import 'package:flutter_hris/core/themes/color_theme.dart';
 import 'package:flutter_hris/core/themes/theme.dart';
 
-class AttendanceItem extends StatelessWidget {
+class MoleculeAttendanceItem extends StatelessWidget {
   final String label;
   final String time;
   final String status;
   final bool isCheckIn;
 
-  const AttendanceItem({
+  const MoleculeAttendanceItem({
     super.key,
     required this.label,
     required this.time,

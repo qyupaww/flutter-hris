@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:flutter_hris/core/components/atoms/custom_button.dart';
-import 'package:flutter_hris/core/components/molecules/app_input.dart';
+import 'package:flutter_hris/core/components/atoms/atom_custom_button.dart';
+import 'package:flutter_hris/core/components/molecules/molecule_input.dart';
 import 'package:flutter_hris/core/themes/color_theme.dart';
 import 'package:flutter_hris/core/themes/theme.dart';
 import 'package:flutter_hris/extension/app_color_extension.dart';
@@ -104,7 +104,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
               ),
             ),
             SizedBox(height: 24.h),
-            AppButton(label: 'Register', onPressed: widget.onRegisterPressed),
+            AtomButton(label: 'Register', onPressed: widget.onRegisterPressed),
             SizedBox(height: 36.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

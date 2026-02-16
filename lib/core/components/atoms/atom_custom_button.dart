@@ -6,25 +6,25 @@ import 'package:flutter_hris/core/constants/constant_sizes.dart';
 import 'package:flutter_hris/core/themes/color_theme.dart';
 import 'package:flutter_hris/core/themes/theme.dart';
 
-enum AppButtonVariant { primary, secondary, tertiary }
+enum AtomButtonVariant { primary, secondary, tertiary }
 
-class AppButton extends StatelessWidget {
+class AtomButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
-  final AppButtonVariant variant;
+  final AtomButtonVariant variant;
   final double? width;
 
-  const AppButton({
+  const AtomButton({
     super.key,
     required this.label,
     required this.onPressed,
-    this.variant = AppButtonVariant.primary,
+    this.variant = AtomButtonVariant.primary,
     this.width = double.infinity,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (variant == AppButtonVariant.primary) {
+    if (variant == AtomButtonVariant.primary) {
       return ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: Theme.of(context).primaryColor,
@@ -45,7 +45,7 @@ class AppButton extends StatelessWidget {
       );
     }
 
-    if (variant == AppButtonVariant.secondary) {
+    if (variant == AtomButtonVariant.secondary) {
       return OutlinedButton(
         style: OutlinedButton.styleFrom(
           foregroundColor: Theme.of(context).primaryColor,
