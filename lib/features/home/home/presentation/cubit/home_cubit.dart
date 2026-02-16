@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
+import 'package:morpheme_flutter_lite/core/constants/constant_routes.dart';
+import 'package:go_router/go_router.dart';
 import 'package:morpheme_base/morpheme_base.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -127,5 +129,7 @@ class HomeCubit extends MorphemeCubit<HomeStateCubit> {
     }
   }
 
-  void onAttendancePressed(BuildContext context) {}
+  void onAttendancePressed(BuildContext context) {
+    context.goNamed(ConstantRoutes.attendance);
+  }
 }
