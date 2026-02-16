@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:morpheme_base/morpheme_base.dart';
 import 'package:morpheme_cached_network_image/morpheme_cached_network_image.dart';
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
-import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/morpheme_colors.dart';
+import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
+import 'package:morpheme_flutter_lite/features/home/home/presentation/cubit/home_cubit.dart';
 
 class HeaderSection extends StatelessWidget {
   const HeaderSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = context.select((HomeCubit cubit) => cubit.state.user);
+
     return Row(
       children: [
         Expanded(
@@ -17,8 +21,8 @@ class HeaderSection extends StatelessWidget {
             spacing: ConstantSizes.s2,
             children: [
               AtomText.bodyMedium('Selamat Datang', color: context.color.grey),
-              AtomText.heading2('Dena Meidina'),
-              AtomBadge.primary(text: 'Senior Engineer'),
+              AtomText.heading2(user?.fullName ?? '-'),
+              AtomBadge.primary(text: user?.division ?? '-'),
             ],
           ),
         ),

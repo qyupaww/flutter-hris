@@ -9,6 +9,9 @@ import 'package:morpheme_base/morpheme_base.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_routes.dart';
+import 'package:morpheme_flutter_lite/core/utils/flutter_secure_storage_helper.dart';
+import 'package:morpheme_flutter_lite/features/auth/login/data/models/response/login_response.dart'
+    as model;
 
 import '../pages/login_page.dart';
 
@@ -76,8 +79,29 @@ class LoginCubit extends MorphemeCubit<LoginStateCubit> {
   void listenerLoginBloc(BuildContext context, LoginState state) {
     state.when(
       onFailed: (state) => state.failure.showSnackbar(context),
-      onSuccess: (state) {
-        context.goNamed(ConstantRoutes.home);
+      onSuccess: (state) async {
+        await FlutterSecureStorageHelper.saveToken(state.data.data?.token);
+
+        final userDomain = state.data.data?.user;
+        if (userDomain != null) {
+          final userModel = model.UserLogin(
+            id: userDomain.id,
+            email: userDomain.email,
+            avatarUrl: userDomain.avatarUrl,
+            companyId: userDomain.companyId,
+            createdAt: userDomain.createdAt,
+            division: userDomain.division,
+            fullName: userDomain.fullName,
+            nip: userDomain.nip,
+            role: userDomain.role,
+            updatedAt: userDomain.updatedAt,
+          );
+          await FlutterSecureStorageHelper.saveUser(userModel);
+        }
+
+        if (context.mounted) {
+          context.goNamed(ConstantRoutes.home);
+        }
       },
     );
   }

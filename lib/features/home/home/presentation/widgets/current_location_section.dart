@@ -12,6 +12,13 @@ class CurrentLocationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final address = context.select(
+      (HomeCubit element) => element.state.address,
+    );
+    final isLoadingLocation = context.select(
+      (HomeCubit element) => element.state.isLoadingLocation,
+    );
+
     return Container(
       padding: EdgeInsets.all(ConstantSizes.s16),
       decoration: BoxDecoration(
@@ -32,15 +39,29 @@ class CurrentLocationSection extends StatelessWidget {
                   'LOKASI SAAT INI',
                   color: context.color.grey,
                 ),
-                AtomText.bodySmall('Manonjaya, Kab.Tasikmalaya'),
+                if (isLoadingLocation)
+                  const AtomText.bodySmall('Mencari lokasi...')
+                else
+                  AtomText.bodySmall(
+                    address ?? 'Lokasi belum ditemukan',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
               ],
             ),
           ),
-          IconButton(
-            onPressed: () => context.read<HomeCubit>().getCurrentLocation(),
-            icon: Icon(Icons.refresh),
-            color: context.color.white,
-          ),
+          if (isLoadingLocation)
+            SizedBox(
+              width: ConstantSizes.s24,
+              height: ConstantSizes.s24,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            )
+          else
+            IconButton(
+              onPressed: () => context.read<HomeCubit>().getCurrentLocation(),
+              icon: Icon(Icons.refresh),
+              color: context.color.white,
+            ),
         ],
       ),
     );
