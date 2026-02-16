@@ -37,9 +37,9 @@ void setupLocatorCore() {
           final map = jsonDecode(response.body);
           await FlutterSecureStorageHelper.saveToken(map['data']['token']);
         },
-        // clearCondition: (request, response) async =>
-        //     request.url == MorphemeEndpoints.logout,
-        // onClearToken: () => FlutterSecureStorageHelper.removeToken(),
+        clearCondition: (request, response) async =>
+            request.url == MorphemeEndpoints.logout,
+        onClearToken: () => FlutterSecureStorageHelper.removeToken(),
         excludeEndpointUsageToken: [
           RegExp('/auth/login'),
           RegExp('/auth/register'),

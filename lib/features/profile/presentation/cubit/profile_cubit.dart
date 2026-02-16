@@ -48,7 +48,6 @@ class ProfileCubit extends MorphemeCubit<ProfileStateCubit> {
       ),
       onFailed: (state) => state.failure.showSnackbar(context),
       onSuccess: (state) async {
-        await FlutterSecureStorageHelper.removeToken();
         await FlutterSecureStorageHelper.removeUser();
         if (context.mounted) {
           context.goNamed(ConstantRoutes.login);
