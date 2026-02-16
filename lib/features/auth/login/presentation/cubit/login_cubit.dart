@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_overrides
-
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/extensions/morpheme_failure_extension.dart';
 import 'package:morpheme_flutter_lite/features/auth/login/data/models/body/login_body.dart';
@@ -13,8 +11,6 @@ import 'package:morpheme_flutter_lite/core/utils/flutter_secure_storage_helper.d
 import 'package:morpheme_flutter_lite/features/auth/login/data/models/response/login_response.dart'
     as model;
 
-import '../pages/login_page.dart';
-
 part 'login_state.dart';
 
 class LoginCubit extends MorphemeCubit<LoginStateCubit> {
@@ -24,27 +20,6 @@ class LoginCubit extends MorphemeCubit<LoginStateCubit> {
 
   final emailKey = GlobalKey<MoleculeTextFieldState>();
   final passwordKey = GlobalKey<MoleculeTextFieldState>();
-
-  @override
-  void initState(BuildContext context) {
-    super.initState(context);
-  }
-
-  @override
-  void initAfterFirstLayout(BuildContext context) {
-    super.initAfterFirstLayout(context);
-  }
-
-  @override
-  void initArgument<T>(BuildContext context, T widget) {
-    super.initArgument(context, widget);
-    if (widget is! LoginPage) return;
-  }
-
-  @override
-  void didChangeDependencies(BuildContext context) {
-    super.didChangeDependencies(context);
-  }
 
   @override
   List<BlocProvider> blocProviders(BuildContext context) => [
@@ -80,8 +55,6 @@ class LoginCubit extends MorphemeCubit<LoginStateCubit> {
     state.when(
       onFailed: (state) => state.failure.showSnackbar(context),
       onSuccess: (state) async {
-        await FlutterSecureStorageHelper.saveToken(state.data.data?.token);
-
         final userDomain = state.data.data?.user;
         if (userDomain != null) {
           final userModel = model.UserLogin(

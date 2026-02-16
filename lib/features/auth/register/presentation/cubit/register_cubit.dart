@@ -107,8 +107,6 @@ class RegisterCubit extends MorphemeCubit<RegisterStateCubit> {
     state.when(
       onFailed: (state) => state.failure.showSnackbar(context),
       onSuccess: (state) async {
-        await FlutterSecureStorageHelper.saveToken(state.data.data?.token);
-
         final userRegister = state.data.data?.user;
         if (userRegister != null) {
           final userLogin = model_login.UserLogin(
