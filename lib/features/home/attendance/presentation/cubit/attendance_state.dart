@@ -3,8 +3,8 @@ part of 'attendance_cubit.dart';
 class AttendanceStateCubit extends Equatable {
   const AttendanceStateCubit({
     this.currentPosition,
-    this.officePosition = const LatLng(-6.8908, 107.8015),
-    this.maxRadius = 100,
+    this.officePosition,
+    this.maxRadius = 0,
     this.distanceInMeters = 0,
     this.gpsAccuracy = 0,
     this.isLoading = true,
@@ -12,14 +12,15 @@ class AttendanceStateCubit extends Equatable {
   });
 
   final LatLng? currentPosition;
-  final LatLng officePosition;
+  final LatLng? officePosition;
   final double maxRadius;
   final double distanceInMeters;
   final double gpsAccuracy;
   final bool isLoading;
   final String? errorMessage;
 
-  bool get isInRadius => distanceInMeters <= maxRadius;
+  bool get isInRadius =>
+      officePosition != null && distanceInMeters <= maxRadius;
 
   AttendanceStateCubit copyWith({
     LatLng? currentPosition,

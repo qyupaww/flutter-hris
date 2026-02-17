@@ -36,7 +36,9 @@ class MapSection extends StatelessWidget {
     AttendanceCubit cubit,
     AttendanceStateCubit state,
   ) {
-    if (state.isLoading || state.currentPosition == null) {
+    if (state.isLoading ||
+        state.currentPosition == null ||
+        state.officePosition == null) {
       return Container(
         width: double.infinity,
         height: double.infinity,
@@ -56,12 +58,14 @@ class MapSection extends StatelessWidget {
       ),
       children: [
         TileLayer(
-          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          urlTemplate:
+              'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+          subdomains: const ['a', 'b', 'c', 'd'],
         ),
         CircleLayer(
           circles: [
             CircleMarker(
-              point: state.officePosition,
+              point: state.officePosition!,
               radius: state.maxRadius,
               useRadiusInMeter: true,
               color: state.isInRadius
@@ -77,7 +81,7 @@ class MapSection extends StatelessWidget {
         MarkerLayer(
           markers: [
             Marker(
-              point: state.officePosition,
+              point: state.officePosition!,
               width: ConstantSizes.s40,
               height: ConstantSizes.s40,
               child: Icon(
