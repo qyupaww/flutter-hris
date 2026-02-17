@@ -43,8 +43,8 @@ class AttendanceCubit extends MorphemeCubit<AttendanceStateCubit> {
   }
 
   Future<void> _fetchCompanyDetail() async {
-    final token = await FlutterSecureStorageHelper.getToken();
-    debugPrint('TOKEN: $token');
+    // final token = await FlutterSecureStorageHelper.getToken();
+    // debugPrint('TOKEN: $token');
 
     final user = await FlutterSecureStorageHelper.getUser();
     final companyId = user?.companyId;
