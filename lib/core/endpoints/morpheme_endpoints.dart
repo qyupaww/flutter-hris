@@ -12,4 +12,5 @@ abstract class MorphemeEndpoints {
   static Uri checkIn = _createUriBaseUrl('/api/v1/attendance/check-in');
   static Uri checkOut = _createUriBaseUrl('/api/v1/attendance/check-out');
   static Uri attendanceToday = _createUriBaseUrl('/api/v1/attendance/today');
+  static Uri profile = _createUriBaseUrl('/api/v1/auth/me');
 }
