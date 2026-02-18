@@ -43,7 +43,6 @@ void setupLocatorCore() {
         excludeEndpointUsageToken: [
           RegExp('/auth/login'),
           RegExp('/auth/register'),
-          RegExp('/company'),
         ],
       ),
       // refreshTokenOption: RefreshTokenOption(

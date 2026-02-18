@@ -1,8 +1,7 @@
 import 'dart:async';
-
+import 'package:intl/intl.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:morpheme_flutter_lite/core/constants/constant_routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:morpheme_base/morpheme_base.dart';
@@ -10,12 +9,13 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:morpheme_flutter_lite/core/utils/flutter_secure_storage_helper.dart';
 import 'package:morpheme_flutter_lite/features/auth/login/domain/entities/login_entity.dart';
-
+import 'package:morpheme_flutter_lite/features/home/attendance/presentation/bloc/attendance_today/attendance_today_bloc.dart';
 part 'home_state.dart';
 
 class HomeCubit extends MorphemeCubit<HomeStateCubit> {
-  HomeCubit() : super(HomeStateCubit());
+  HomeCubit({required this.attendanceTodayBloc}) : super(HomeStateCubit());
 
+  final AttendanceTodayBloc attendanceTodayBloc;
   Timer? timer;
 
   @override
@@ -27,6 +27,7 @@ class HomeCubit extends MorphemeCubit<HomeStateCubit> {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       emit(state.copyWith(dateTime: DateTime.now()));
     });
+    attendanceTodayBloc.add(FetchAttendanceToday());
   }
 
   void _getUser() async {
@@ -52,15 +53,60 @@ class HomeCubit extends MorphemeCubit<HomeStateCubit> {
   }
 
   @override
-  List<BlocProvider> blocProviders(BuildContext context) => [];
+  List<BlocProvider> blocProviders(BuildContext context) => [
+    BlocProvider<AttendanceTodayBloc>.value(value: attendanceTodayBloc),
+  ];
 
   @override
-  List<BlocListener> blocListeners(BuildContext context) => [];
+  List<BlocListener> blocListeners(BuildContext context) => [
+    BlocListener<AttendanceTodayBloc, AttendanceTodayState>(
+      listener: _listenerAttendanceTodayBloc,
+    ),
+  ];
 
   @override
   void dispose() {
     super.dispose();
     timer?.cancel();
+    attendanceTodayBloc.close();
+  }
+
+  void _listenerAttendanceTodayBloc(
+    BuildContext context,
+    AttendanceTodayState todayState,
+  ) {
+    todayState.when(
+      onFailed: (state) {},
+      onSuccess: (state) {
+        final data = state.data.data;
+        if (data != null) {
+          final localCheckIn = _toLocalTime(data.checkInTime);
+          final localCheckOut = _toLocalTime(data.checkOutTime);
+          emit(
+            this.state.copyWith(
+              isCheckedIn: data.isCheckedIn ?? (localCheckIn != null),
+              isCheckedOut: data.isCheckedOut ?? (localCheckOut != null),
+              checkInTime: localCheckIn,
+              checkOutTime: localCheckOut,
+              checkInStatus: data.checkInStatus,
+              checkOutStatus: data.checkOutStatus,
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  static String? _toLocalTime(String? utcTime) {
+    if (utcTime == null || utcTime.isEmpty) return null;
+    try {
+      final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+      final utcDateTime = DateTime.parse('${today}T${utcTime}Z');
+      final local = utcDateTime.toLocal();
+      return DateFormat('HH:mm:ss').format(local);
+    } catch (_) {
+      return utcTime;
+    }
   }
 
   void getCurrentLocation() async {
@@ -129,7 +175,12 @@ class HomeCubit extends MorphemeCubit<HomeStateCubit> {
     }
   }
 
-  void onAttendancePressed(BuildContext context) {
-    context.goNamed(ConstantRoutes.attendance);
+  void onAttendancePressed(BuildContext context) async {
+    await context.pushNamed(ConstantRoutes.attendance);
+    refreshTodayStatus();
+  }
+
+  void refreshTodayStatus() {
+    attendanceTodayBloc.add(FetchAttendanceToday());
   }
 }

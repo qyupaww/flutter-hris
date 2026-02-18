@@ -6,7 +6,6 @@ import 'package:morpheme_base/morpheme_base.dart';
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_routes.dart';
 import 'package:morpheme_flutter_lite/core/extensions/build_context_extension.dart';
-import 'package:morpheme_flutter_lite/core/extensions/morpheme_failure_extension.dart';
 
 import '../bloc/logout/logout_bloc.dart';
 
@@ -46,13 +45,20 @@ class ProfileCubit extends MorphemeCubit<ProfileStateCubit> {
           message: 'Logging out...',
         ),
       ),
-      onFailed: (state) => state.failure.showSnackbar(context),
+      onFailed: (state) async {
+        await _clearAndRedirect(context);
+      },
       onSuccess: (state) async {
-        await FlutterSecureStorageHelper.removeUser();
-        if (context.mounted) {
-          context.goNamed(ConstantRoutes.login);
-        }
+        await _clearAndRedirect(context);
       },
     );
+  }
+
+  Future<void> _clearAndRedirect(BuildContext context) async {
+    await FlutterSecureStorageHelper.removeToken();
+    await FlutterSecureStorageHelper.removeUser();
+    if (context.mounted) {
+      context.goNamed(ConstantRoutes.login);
+    }
   }
 }

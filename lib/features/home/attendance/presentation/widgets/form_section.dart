@@ -12,21 +12,56 @@ class FormSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AttendanceCubit, AttendanceStateCubit>(
       builder: (context, state) {
+        final cubit = context.read<AttendanceCubit>();
+
         return Padding(
           padding: const EdgeInsets.all(ConstantSizes.s16),
           child: Column(
             spacing: ConstantSizes.s24,
             children: [
-              SelfiePlaceholder(onTap: () {}),
-              AtomButton.elevated(
-                key: const Key('checkin_button'),
-                text: 'Check In Masuk',
-                onPressed: state.isInRadius ? () {} : null,
+              SelfiePlaceholder(
+                onTap: state.isCheckedIn && state.isCheckedOut
+                    ? () {}
+                    : () => cubit.takeSelfie(),
+                imageFile: state.selfieFile,
               ),
+              _buildActionButton(context, state, cubit),
             ],
           ),
         );
       },
+    );
+  }
+
+  Widget _buildActionButton(
+    BuildContext context,
+    AttendanceStateCubit state,
+    AttendanceCubit cubit,
+  ) {
+    if (state.isCheckedIn && state.isCheckedOut) {
+      return AtomButton.elevated(
+        key: const Key('attendance_done_button'),
+        text: 'Sudah Absen Hari Ini',
+        onPressed: null,
+      );
+    }
+
+    if (state.isCheckedIn) {
+      return AtomButton.elevated(
+        key: const Key('checkout_button'),
+        text: state.isSubmitting ? 'Mengirim...' : 'Check Out',
+        onPressed: state.canCheckOut && !state.isSubmitting
+            ? () => cubit.doCheckOut()
+            : null,
+      );
+    }
+
+    return AtomButton.elevated(
+      key: const Key('checkin_button'),
+      text: state.isSubmitting ? 'Mengirim...' : 'Check In Masuk',
+      onPressed: state.canCheckIn && !state.isSubmitting
+          ? () => cubit.doCheckIn()
+          : null,
     );
   }
 }

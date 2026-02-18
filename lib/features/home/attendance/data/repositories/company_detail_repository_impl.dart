@@ -22,7 +22,7 @@ class CompanyDetailRepositoryImpl implements CompanyDetailRepository {
         headers: headers,
         cacheStrategy: cacheStrategy,
       );
-      return Right(data.toEntity());
+      return Right(CompanyDetailResponseMapper(data).toEntity());
     } on MorphemeException catch (e) {
       return Left(e.toMorphemeFailure());
     } catch (e) {

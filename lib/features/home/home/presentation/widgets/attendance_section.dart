@@ -11,66 +11,102 @@ class AttendanceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.color.fillTextField,
-        borderRadius: BorderRadius.circular(ConstantRadius.r12),
-        border: Border.all(color: context.color.border),
-      ),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(ConstantSizes.s16),
-            child: Row(
-              mainAxisAlignment: .spaceBetween,
-              children: [
-                AtomText.bodyMediumBold('Status Absensi'),
-                AtomBadge.primary(text: 'Belum Absen'),
-              ],
-            ),
+    return BlocBuilder<HomeCubit, HomeStateCubit>(
+      builder: (context, state) {
+        final String badgeText;
+        if (state.isCheckedIn && state.isCheckedOut) {
+          badgeText = 'Sudah Absen';
+        } else if (state.isCheckedIn) {
+          badgeText = 'Sudah Masuk';
+        } else {
+          badgeText = 'Belum Absen';
+        }
+
+        final checkInTime = state.checkInTime ?? '--:--';
+        final checkOutTime = state.checkOutTime ?? '--:--';
+        final checkInStatus = state.isCheckedIn
+            ? (state.checkInStatus ?? 'Sudah Absen')
+            : 'Belum Absen';
+        final checkOutStatus = state.isCheckedOut
+            ? (state.checkOutStatus ?? 'Sudah Pulang')
+            : 'Belum Absen';
+
+        final String buttonText;
+        final VoidCallback? onPressed;
+        if (state.isCheckedIn && state.isCheckedOut) {
+          buttonText = 'Sudah Absen Hari Ini';
+          onPressed = null;
+        } else if (state.isCheckedIn) {
+          buttonText = 'Check Out Sekarang';
+          onPressed = () =>
+              context.read<HomeCubit>().onAttendancePressed(context);
+        } else {
+          buttonText = 'Check In Sekarang';
+          onPressed = () =>
+              context.read<HomeCubit>().onAttendancePressed(context);
+        }
+
+        return Container(
+          decoration: BoxDecoration(
+            color: context.color.fillTextField,
+            borderRadius: BorderRadius.circular(ConstantRadius.r12),
+            border: Border.all(color: context.color.border),
           ),
-          Divider(color: context.color.border, height: 1),
-          Padding(
-            padding: EdgeInsets.all(ConstantSizes.s16),
-            child: Column(
-              spacing: ConstantSizes.s16,
-              children: [
-                IntrinsicHeight(
-                  child: Row(
-                    spacing: ConstantSizes.s16,
-                    children: [
-                      Expanded(
-                        child: _StatusAttendance(
-                          title: 'JAM MASUK',
-                          time: '--:--',
-                          status: 'Belum Absen',
-                        ),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(ConstantSizes.s16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AtomText.bodyMediumBold('Status Absensi'),
+                    AtomBadge.primary(text: badgeText),
+                  ],
+                ),
+              ),
+              Divider(color: context.color.border, height: 1),
+              Padding(
+                padding: EdgeInsets.all(ConstantSizes.s16),
+                child: Column(
+                  spacing: ConstantSizes.s16,
+                  children: [
+                    IntrinsicHeight(
+                      child: Row(
+                        spacing: ConstantSizes.s16,
+                        children: [
+                          Expanded(
+                            child: _StatusAttendance(
+                              title: 'JAM MASUK',
+                              time: checkInTime,
+                              status: checkInStatus,
+                            ),
+                          ),
+                          VerticalDivider(
+                            color: context.color.border,
+                            width: 1,
+                          ),
+                          Expanded(
+                            child: _StatusAttendance(
+                              title: 'JAM PULANG',
+                              time: checkOutTime,
+                              status: checkOutStatus,
+                            ),
+                          ),
+                        ],
                       ),
-                      VerticalDivider(color: context.color.border, width: 1),
-                      Expanded(
-                        child: _StatusAttendance(
-                          title: 'JAM PULANG',
-                          time: '--:--',
-                          status: 'Belum Absen',
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    AtomButton.elevated(text: buttonText, onPressed: onPressed),
+                    AtomText.bodySmall(
+                      'Pastikan Anda berada di area kantor sebelum melakukan absensi',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
-                AtomButton.elevated(
-                  text: 'Check In Sekarang',
-                  onPressed: () =>
-                      context.read<HomeCubit>().onAttendancePressed(context),
-                ),
-                AtomText.bodySmall(
-                  'Pastikan Anda berada di area kantor sebelum melakukan absensi',
-                  textAlign: .center,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -89,7 +125,7 @@ class _StatusAttendance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: .start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       spacing: ConstantSizes.s8,
       children: [
         Row(

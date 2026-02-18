@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:morpheme_cached_network_image/morpheme_cached_network_image.dart';
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_radius.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
@@ -8,9 +9,15 @@ import 'package:morpheme_flutter_lite/features/home/attendance/components/selfie
 
 class SelfiePlaceholder extends StatelessWidget {
   final VoidCallback onTap;
+  final File? imageFile;
   final String? imageUrl;
 
-  const SelfiePlaceholder({super.key, required this.onTap, this.imageUrl});
+  const SelfiePlaceholder({
+    super.key,
+    required this.onTap,
+    this.imageFile,
+    this.imageUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +39,9 @@ class SelfiePlaceholder extends StatelessWidget {
               ),
             ),
             clipBehavior: Clip.antiAlias,
-            child: imageUrl != null
-                ? MorphemeCachedNetworkImage(
-                    imageUrl: imageUrl!,
+            child: imageFile != null
+                ? Image.file(
+                    imageFile!,
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: double.infinity,
