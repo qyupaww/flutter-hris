@@ -18,6 +18,7 @@ class AttendanceStateCubit extends Equatable {
     this.checkInStatus,
     this.checkOutStatus,
     this.isSubmitting = false,
+    this.pendingAction,
   });
 
   final LatLng? currentPosition;
@@ -43,6 +44,9 @@ class AttendanceStateCubit extends Equatable {
   // Submission loading
   final bool isSubmitting;
 
+  // Pending action after upload
+  final String? pendingAction;
+
   bool get isInRadius =>
       officePosition != null && distanceInMeters <= maxRadius;
 
@@ -67,6 +71,7 @@ class AttendanceStateCubit extends Equatable {
     String? checkInStatus,
     String? checkOutStatus,
     bool? isSubmitting,
+    String? pendingAction,
     bool clearSelfie = false,
   }) {
     return AttendanceStateCubit(
@@ -86,6 +91,7 @@ class AttendanceStateCubit extends Equatable {
       checkInStatus: checkInStatus ?? this.checkInStatus,
       checkOutStatus: checkOutStatus ?? this.checkOutStatus,
       isSubmitting: isSubmitting ?? this.isSubmitting,
+      pendingAction: pendingAction,
     );
   }
 
@@ -107,5 +113,6 @@ class AttendanceStateCubit extends Equatable {
     checkInStatus,
     checkOutStatus,
     isSubmitting,
+    pendingAction,
   ];
 }

@@ -16,6 +16,7 @@ import 'package:morpheme_flutter_lite/features/home/attendance/presentation/bloc
 import 'package:morpheme_flutter_lite/features/home/attendance/presentation/bloc/check_in/check_in_bloc.dart';
 import 'package:morpheme_flutter_lite/features/home/attendance/presentation/bloc/check_out/check_out_bloc.dart';
 import 'package:morpheme_flutter_lite/features/home/attendance/presentation/bloc/company_detail/company_detail_bloc.dart';
+import 'package:morpheme_flutter_lite/features/home/attendance/presentation/bloc/upload_image/upload_image_bloc.dart';
 part 'attendance_state.dart';
 
 class AttendanceCubit extends MorphemeCubit<AttendanceStateCubit> {
@@ -24,6 +25,7 @@ class AttendanceCubit extends MorphemeCubit<AttendanceStateCubit> {
     required this.checkInBloc,
     required this.checkOutBloc,
     required this.attendanceTodayBloc,
+    required this.uploadImageBloc,
     required this.attendanceRepository,
   }) : super(const AttendanceStateCubit());
 
@@ -31,6 +33,7 @@ class AttendanceCubit extends MorphemeCubit<AttendanceStateCubit> {
   final CheckInBloc checkInBloc;
   final CheckOutBloc checkOutBloc;
   final AttendanceTodayBloc attendanceTodayBloc;
+  final UploadImageBloc uploadImageBloc;
   final AttendanceRepository attendanceRepository;
   final MapController mapController = MapController();
   final ImagePicker _imagePicker = ImagePicker();
@@ -48,6 +51,7 @@ class AttendanceCubit extends MorphemeCubit<AttendanceStateCubit> {
     BlocProvider<CheckInBloc>.value(value: checkInBloc),
     BlocProvider<CheckOutBloc>.value(value: checkOutBloc),
     BlocProvider<AttendanceTodayBloc>.value(value: attendanceTodayBloc),
+    BlocProvider<UploadImageBloc>.value(value: uploadImageBloc),
   ];
 
   @override
@@ -60,6 +64,9 @@ class AttendanceCubit extends MorphemeCubit<AttendanceStateCubit> {
     BlocListener<AttendanceTodayBloc, AttendanceTodayState>(
       listener: _listenerAttendanceTodayBloc,
     ),
+    BlocListener<UploadImageBloc, UploadImageState>(
+      listener: _listenerUploadImageBloc,
+    ),
   ];
 
   @override
@@ -68,6 +75,7 @@ class AttendanceCubit extends MorphemeCubit<AttendanceStateCubit> {
     checkInBloc.close();
     checkOutBloc.close();
     attendanceTodayBloc.close();
+    uploadImageBloc.close();
     mapController.dispose();
     super.dispose();
   }
@@ -116,67 +124,15 @@ class AttendanceCubit extends MorphemeCubit<AttendanceStateCubit> {
   Future<void> doCheckIn() async {
     if (state.currentPosition == null || state.selfieFile == null) return;
 
-    emit(state.copyWith(isSubmitting: true));
-
-    final uploadResult = await attendanceRepository.uploadImage(
-      state.selfieFile!,
-    );
-
-    uploadResult.fold(
-      (failure) {
-        emit(
-          state.copyWith(
-            isSubmitting: false,
-            errorMessage: 'Failed to upload photo.',
-          ),
-        );
-      },
-      (imageUrl) {
-        emit(state.copyWith(selfieUrl: imageUrl));
-        checkInBloc.add(
-          DoCheckIn(
-            CheckInBody(
-              latitude: state.currentPosition!.latitude,
-              longitude: state.currentPosition!.longitude,
-              photo: imageUrl,
-            ),
-          ),
-        );
-      },
-    );
+    emit(state.copyWith(isSubmitting: true, pendingAction: 'check_in'));
+    uploadImageBloc.add(DoUploadImage(state.selfieFile!));
   }
 
   Future<void> doCheckOut() async {
     if (state.currentPosition == null || state.selfieFile == null) return;
 
-    emit(state.copyWith(isSubmitting: true));
-
-    final uploadResult = await attendanceRepository.uploadImage(
-      state.selfieFile!,
-    );
-
-    uploadResult.fold(
-      (failure) {
-        emit(
-          state.copyWith(
-            isSubmitting: false,
-            errorMessage: 'Failed to upload photo.',
-          ),
-        );
-      },
-      (imageUrl) {
-        emit(state.copyWith(selfieUrl: imageUrl));
-        checkOutBloc.add(
-          DoCheckOut(
-            CheckOutBody(
-              latitude: state.currentPosition!.latitude,
-              longitude: state.currentPosition!.longitude,
-              photo: imageUrl,
-            ),
-          ),
-        );
-      },
-    );
+    emit(state.copyWith(isSubmitting: true, pendingAction: 'check_out'));
+    uploadImageBloc.add(DoUploadImage(state.selfieFile!));
   }
 
   // ─── Listeners ──────────────────────────────────────────
@@ -291,6 +247,50 @@ class AttendanceCubit extends MorphemeCubit<AttendanceStateCubit> {
               checkOutTime: localCheckOut,
               checkInStatus: data.checkInStatus,
               checkOutStatus: data.checkOutStatus,
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  void _listenerUploadImageBloc(
+    BuildContext context,
+    UploadImageState uploadState,
+  ) {
+    uploadState.when(
+      onFailed: (state) {
+        emit(
+          this.state.copyWith(
+            isSubmitting: false,
+            errorMessage: 'Failed to upload photo.',
+            pendingAction: null,
+          ),
+        );
+      },
+      onSuccess: (state) {
+        final imageUrl = state.imageUrl;
+        final action = this.state.pendingAction;
+        emit(this.state.copyWith(selfieUrl: imageUrl, pendingAction: null));
+
+        if (action == 'check_in') {
+          checkInBloc.add(
+            DoCheckIn(
+              CheckInBody(
+                latitude: this.state.currentPosition!.latitude,
+                longitude: this.state.currentPosition!.longitude,
+                photo: imageUrl,
+              ),
+            ),
+          );
+        } else if (action == 'check_out') {
+          checkOutBloc.add(
+            DoCheckOut(
+              CheckOutBody(
+                latitude: this.state.currentPosition!.latitude,
+                longitude: this.state.currentPosition!.longitude,
+                photo: imageUrl,
+              ),
             ),
           );
         }

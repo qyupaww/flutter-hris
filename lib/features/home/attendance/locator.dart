@@ -10,10 +10,12 @@ import 'domain/usecases/attendance_today_use_case.dart';
 import 'domain/usecases/check_in_use_case.dart';
 import 'domain/usecases/check_out_use_case.dart';
 import 'domain/usecases/company_detail_use_case.dart';
+import 'domain/usecases/upload_image_use_case.dart';
 import 'presentation/bloc/attendance_today/attendance_today_bloc.dart';
 import 'presentation/bloc/check_in/check_in_bloc.dart';
 import 'presentation/bloc/check_out/check_out_bloc.dart';
 import 'presentation/bloc/company_detail/company_detail_bloc.dart';
+import 'presentation/bloc/upload_image/upload_image_bloc.dart';
 import 'presentation/cubit/attendance_cubit.dart';
 
 void setupLocatorAttendance() {
@@ -25,6 +27,7 @@ void setupLocatorAttendance() {
         checkInBloc: locator(),
         checkOutBloc: locator(),
         attendanceTodayBloc: locator(),
+        uploadImageBloc: locator(),
         attendanceRepository: locator(),
       ),
     )
@@ -33,11 +36,13 @@ void setupLocatorAttendance() {
     ..registerFactory(() => CheckInBloc(useCase: locator()))
     ..registerFactory(() => CheckOutBloc(useCase: locator()))
     ..registerFactory(() => AttendanceTodayBloc(useCase: locator()))
+    ..registerFactory(() => UploadImageBloc(useCase: locator()))
     // Use Cases
     ..registerLazySingleton(() => CompanyDetailUseCase(repository: locator()))
     ..registerLazySingleton(() => CheckInUseCase(repository: locator()))
     ..registerLazySingleton(() => CheckOutUseCase(repository: locator()))
     ..registerLazySingleton(() => AttendanceTodayUseCase(repository: locator()))
+    ..registerLazySingleton(() => UploadImageUseCase(repository: locator()))
     // Repositories
     ..registerLazySingleton<CompanyDetailRepository>(
       () => CompanyDetailRepositoryImpl(remoteDataSource: locator()),

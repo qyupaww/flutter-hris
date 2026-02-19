@@ -49,6 +49,20 @@ class _ProfilePageState extends State<ProfilePage>
                     onPressed: () =>
                         context.read<ProfileCubit>().fetchProfile(),
                   ),
+                  const AtomSpacing.vertical16(),
+                  AtomButton.elevated(
+                    text: 'Logout',
+                    onPressed: () =>
+                        context.read<ProfileCubit>().onLogoutPressed(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: context.color.bgError,
+                      foregroundColor: context.color.error,
+                      minimumSize: const Size(
+                        double.infinity,
+                        ConstantSizes.heightButton,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             );
