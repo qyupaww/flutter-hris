@@ -37,7 +37,10 @@ class LiveTimeSection extends StatelessWidget {
         RichText(
           text: TextSpan(
             children: [
-              TextSpan(text: dateTime?.toFormatDateTime('HH:mm') ?? '--:--'),
+              TextSpan(
+                text: dateTime?.toFormatDateTime('HH:mm') ?? '--:--',
+                style: TextStyle(color: context.color.white),
+              ),
               TextSpan(
                 text: dateTime?.toFormatDateTime(':ss') ?? ':--',
                 style: TextStyle(color: context.color.primary),

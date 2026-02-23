@@ -81,31 +81,9 @@ class _ProfilePageState extends State<ProfilePage>
                 const AtomSpacing.vertical32(),
                 ProfileInfoSection(user: user),
                 const AtomSpacing.vertical16(),
-                AtomButton.elevated(
-                  key: const Key('logout_button'),
-                  text: 'Logout',
-                  onPressed: () =>
-                      context.read<ProfileCubit>().onLogoutPressed(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.color.bgError,
-                    foregroundColor: context.color.error,
-                    minimumSize: const Size(
-                      double.infinity,
-                      ConstantSizes.heightButton,
-                    ),
-                  ),
-                ),
+                const ProfileThemeSwitcher(),
                 const AtomSpacing.vertical16(),
-                AtomText.bodyMediumBold(
-                  'Nafanesia Work',
-                  textAlign: TextAlign.center,
-                  color: context.color.grey,
-                ),
-                AtomText.bodySmall(
-                  'v1.0.0 (Build 2026.01.05)',
-                  textAlign: TextAlign.center,
-                  color: context.color.grey,
-                ),
+                const ProfileFooterSection(),
               ],
             ),
           );
