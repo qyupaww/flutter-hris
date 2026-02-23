@@ -3,6 +3,7 @@ import 'package:morpheme_base/morpheme_base.dart';
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
 import 'package:morpheme_flutter_lite/core/extensions/date_time_extension.dart';
+import 'package:morpheme_flutter_lite/core/l10n/s.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/morpheme_colors.dart';
 import 'package:morpheme_flutter_lite/features/home/home/presentation/cubit/home_cubit.dart';
 
@@ -29,7 +30,7 @@ class LiveTimeSection extends StatelessWidget {
             ),
             AtomSpacing.horizontal8(),
             AtomText.bodySmall(
-              'LIVE TIME',
+              S.of(context)?.liveTime ?? 'LIVE TIME',
               color: context.color.primary.withValues(alpha: 0.8),
             ),
           ],

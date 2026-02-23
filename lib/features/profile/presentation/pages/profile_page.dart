@@ -6,6 +6,7 @@ import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_c
 import 'package:morpheme_flutter_lite/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:morpheme_flutter_lite/features/profile/presentation/widgets/widgets.dart';
 import 'package:morpheme_flutter_lite/core/global_variable.dart';
+import 'package:morpheme_flutter_lite/core/l10n/s.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -23,7 +24,10 @@ class _ProfilePageState extends State<ProfilePage>
   Widget buildWidget(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const AtomText.bodyLarge('Profile', fontWeight: FontWeight.bold),
+        title: AtomText.bodyLarge(
+          S.of(context)?.profileTitle ?? 'Profile',
+          fontWeight: FontWeight.bold,
+        ),
         centerTitle: true,
         backgroundColor: context.color.background,
         elevation: 0,
@@ -40,18 +44,19 @@ class _ProfilePageState extends State<ProfilePage>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AtomText.bodyMedium(
-                    state.failure?.message ?? 'Unknown error',
+                    state.failure?.message ??
+                        (S.of(context)?.somethingWentWrong ?? 'Unknown error'),
                     color: context.color.error,
                   ),
                   const AtomSpacing.vertical16(),
                   AtomButton.elevated(
-                    text: 'Retry',
+                    text: S.of(context)?.retry ?? 'Retry',
                     onPressed: () =>
                         context.read<ProfileCubit>().fetchProfile(),
                   ),
                   const AtomSpacing.vertical16(),
                   AtomButton.elevated(
-                    text: 'Logout',
+                    text: S.of(context)?.logoutButton ?? 'Logout',
                     onPressed: () =>
                         context.read<ProfileCubit>().onLogoutPressed(context),
                     style: ElevatedButton.styleFrom(
@@ -82,6 +87,8 @@ class _ProfilePageState extends State<ProfilePage>
                 ProfileInfoSection(user: user),
                 const AtomSpacing.vertical16(),
                 const ProfileThemeSwitcher(),
+                const AtomSpacing.vertical16(),
+                const ProfileLanguageSwitcher(),
                 const AtomSpacing.vertical16(),
                 const ProfileFooterSection(),
               ],

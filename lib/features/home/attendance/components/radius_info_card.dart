@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_radius.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
+import 'package:morpheme_flutter_lite/core/l10n/s.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 
 class RadiusInfoCard extends StatelessWidget {
@@ -18,20 +19,28 @@ class RadiusInfoCard extends StatelessWidget {
     required this.onRefresh,
   });
 
-  String get _statusText => isInRadius ? 'DALAM RADIUS' : 'DILUAR RADIUS';
+  String _statusText(BuildContext context) => isInRadius
+      ? (S.of(context)?.insideRadius ?? 'DALAM RADIUS')
+      : (S.of(context)?.outsideRadius ?? 'DILUAR RADIUS');
 
   Color _statusColor(BuildContext context) =>
       isInRadius ? context.color.success : context.color.error;
 
-  String get _distanceText => distanceInMeters < 1000
-      ? '${distanceInMeters.toStringAsFixed(0)} meter'
-      : '${(distanceInMeters / 1000).toStringAsFixed(1)} km';
+  String _distanceText(BuildContext context) => distanceInMeters < 1000
+      ? '${distanceInMeters.toStringAsFixed(0)} ${S.of(context)?.meters ?? "meter"}'
+      : '${(distanceInMeters / 1000).toStringAsFixed(1)} ${S.of(context)?.km ?? "km"}';
 
-  String get _gpsLabel {
-    if (gpsAccuracy <= 10) return 'GPS Sangat Akurat';
-    if (gpsAccuracy <= 30) return 'GPS Akurat';
-    if (gpsAccuracy <= 50) return 'GPS Cukup';
-    return 'GPS Kurang Akurat';
+  String _gpsLabel(BuildContext context) {
+    if (gpsAccuracy <= 10) {
+      return S.of(context)?.gpsVeryAccurate ?? 'GPS Sangat Akurat';
+    }
+    if (gpsAccuracy <= 30) {
+      return S.of(context)?.gpsAccurate ?? 'GPS Akurat';
+    }
+    if (gpsAccuracy <= 50) {
+      return S.of(context)?.gpsEnough ?? 'GPS Cukup';
+    }
+    return S.of(context)?.gpsPoor ?? 'GPS Kurang Akurat';
   }
 
   double get _gpsBarFactor {
@@ -74,18 +83,19 @@ class RadiusInfoCard extends StatelessWidget {
                           color: statusColor,
                         ),
                         AtomText.bodySmall(
-                          _statusText,
+                          _statusText(context),
                           color: statusColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ],
                     ),
                     AtomText.bodyLarge(
-                      _distanceText,
+                      _distanceText(context),
                       color: context.color.white,
                     ),
                     AtomText.bodySmall(
-                      'Jarak dari titik pusat kantor',
+                      S.of(context)?.distanceDescription ??
+                          'Jarak dari titik pusat kantor',
                       color: context.color.grey,
                     ),
                   ],
@@ -109,7 +119,10 @@ class RadiusInfoCard extends StatelessWidget {
                         size: ConstantSizes.s20,
                       ),
                     ),
-                    AtomText.bodySmall('Refresh', color: context.color.white),
+                    AtomText.bodySmall(
+                      S.of(context)?.refresh ?? 'Refresh',
+                      color: context.color.white,
+                    ),
                   ],
                 ),
               ),
@@ -142,7 +155,7 @@ class RadiusInfoCard extends StatelessWidget {
                   ),
                 ),
               ),
-              AtomText.bodySmall(_gpsLabel, color: statusColor),
+              AtomText.bodySmall(_gpsLabel(context), color: statusColor),
             ],
           ),
         ],
