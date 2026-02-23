@@ -74,5 +74,18 @@
   "gpsEnough": "GPS Moderate",
   "gpsPoor": "GPS Poor",
   "distanceDescription": "Distance from office center",
-  "selfiePhotoEvidence": "Selfie Photo Evidence"
+  "selfiePhotoEvidence": "Selfie Photo Evidence",
+
+  "sectionHistory": "",
+  "historyTitle": "Attendance History",
+  "period": "PERIOD",
+  "resetFilter": "Reset Filter",
+  "allStatus": "All Status",
+  "present": "PRESENT",
+  "late": "LATE",
+  "absent": "ABSENT",
+  "attendanceSummary": "Attendance List",
+  "notCheckedInYet": "Not Checked-in",
+  "onTime": "ON TIME",
+  "loadingOldData": "Loading old data..."
 }

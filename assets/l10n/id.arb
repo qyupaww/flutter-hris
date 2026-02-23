@@ -74,5 +74,18 @@
   "gpsEnough": "GPS Cukup",
   "gpsPoor": "GPS Kurang Akurat",
   "distanceDescription": "Jarak dari titik pusat kantor",
-  "selfiePhotoEvidence": "Bukti Foto Selfie"
+  "selfiePhotoEvidence": "Bukti Foto Selfie",
+
+  "sectionHistory": "",
+  "historyTitle": "Riwayat Absensi",
+  "period": "Periode",
+  "resetFilter": "Reset Filter",
+  "allStatus": "Semua Status",
+  "present": "HADIR",
+  "late": "TERLAMBAT",
+  "absent": "ALPHA",
+  "attendanceSummary": "Daftar Kehadiran",
+  "notCheckedInYet": "Belum Check-in",
+  "onTime": "TEPAT WAKTU",
+  "loadingOldData": "Memuat data lama..."
 }
