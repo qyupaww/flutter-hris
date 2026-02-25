@@ -4,7 +4,7 @@ import 'package:morpheme_flutter_lite/core/components/atoms/atom_icon.dart';
 import 'package:morpheme_flutter_lite/core/components/atoms/atom_text.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_radius.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/morpheme_colors.dart';
 import 'package:morpheme_flutter_lite/features/home/home/presentation/cubit/home_cubit.dart';
 
@@ -37,18 +37,17 @@ class CurrentLocationSection extends StatelessWidget {
               spacing: ConstantSizes.s2,
               children: [
                 AtomText.bodySmall(
-                  S.of(context)?.currentLocationTitle ?? 'LOKASI SAAT INI',
+                  context.s.currentLocationTitle,
                   color: context.color.grey,
                 ),
                 if (isLoadingLocation)
                   AtomText.bodySmall(
-                    S.of(context)?.searchingLocation ?? 'Mencari lokasi...',
+                    context.s.searchingLocation,
                   )
                 else
                   AtomText.bodySmall(
                     address ??
-                        (S.of(context)?.locationNotFound ??
-                            'Lokasi belum ditemukan'),
+                        (context.s.locationNotFound),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

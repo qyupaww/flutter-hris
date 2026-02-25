@@ -9,7 +9,7 @@ import 'package:morpheme_flutter_lite/features/auth/component/header_section.dar
 import 'package:morpheme_flutter_lite/features/auth/login/presentation/bloc/login/login_bloc.dart';
 
 import '../cubit/login_cubit.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -40,13 +40,13 @@ class _LoginPageState extends State<LoginPage>
                 mainAxisAlignment: .center,
                 children: [
                   HeaderSection(
-                    title: S.of(context)?.loginTitle ?? '',
-                    subtitle: S.of(context)?.loginSubtitle ?? '',
+                    title: context.s.loginTitle,
+                    subtitle: context.s.loginSubtitle,
                   ),
                   AtomSpacing.vertical40(),
                   MoleculeTextField(
                     key: emailKey,
-                    title: S.of(context)?.emailLabel ?? '',
+                    title: context.s.emailLabel,
                     keyboardType: .emailAddress,
                     textInputAction: .next,
                     decoration: InputDecoration(hintText: 'user@email.com'),
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage>
                   MoleculeTextField(
                     key: passwordKey,
                     isPassword: true,
-                    title: S.of(context)?.passwordLabel ?? '',
+                    title: context.s.passwordLabel,
                     textInputAction: .done,
                     decoration: InputDecoration(hintText: '••••••••••••'),
                     validator: (context, value) {
@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage>
 
                       return AtomButton.elevated(
                         isLoading: loginState.isLoading,
-                        text: S.of(context)?.loginButton ?? '',
+                        text: context.s.loginButton,
                         onPressed: () =>
                             context.read<LoginCubit>().onLoginPressed(context),
                       );
@@ -97,14 +97,14 @@ class _LoginPageState extends State<LoginPage>
                         context.read<LoginCubit>().onRegisterPressed(context),
                     textRich: [
                       TextSpan(
-                        text: '${S.of(context)?.registerPrompt ?? ''} ',
+                        text: '${context.s.registerPrompt} ',
                         style: TextStyle(
                           fontWeight: FontWeight.normal,
                           color: context.color.white,
                         ),
                       ),
                       TextSpan(
-                        text: S.of(context)?.registerLink ?? '',
+                        text: context.s.registerLink,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: context.color.primary,

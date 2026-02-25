@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:morpheme_flutter_lite/core/components/atoms/atom_spacing.dart';
 import 'package:morpheme_flutter_lite/core/components/atoms/atom_text.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 
 class HistoryFilterSection extends StatelessWidget {
@@ -29,7 +29,7 @@ class HistoryFilterSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             AtomText.bodyMedium(
-              S.of(context)?.period ?? 'Periode',
+              context.s.period,
               color: context.color.white,
               fontWeight: FontWeight.bold,
             ),
@@ -39,7 +39,7 @@ class HistoryFilterSection extends StatelessWidget {
                 onStatusChanged('all');
               },
               child: AtomText.bodyMedium(
-                S.of(context)?.resetFilter ?? 'Reset Filter',
+                context.s.resetFilter,
                 color: context.color.primary,
                 fontWeight: FontWeight.bold,
               ),
@@ -119,27 +119,19 @@ class HistoryFilterSection extends StatelessWidget {
                     items: [
                       DropdownMenuItem(
                         value: 'all',
-                        child: AtomText.bodyMedium(
-                          S.of(context)?.allStatus ?? 'Semua Status',
-                        ),
+                        child: AtomText.bodyMedium(context.s.allStatus),
                       ),
                       DropdownMenuItem(
                         value: 'present',
-                        child: AtomText.bodyMedium(
-                          S.of(context)?.onTime ?? 'Tepat Waktu',
-                        ),
+                        child: AtomText.bodyMedium(context.s.onTime),
                       ),
                       DropdownMenuItem(
                         value: 'late',
-                        child: AtomText.bodyMedium(
-                          S.of(context)?.late ?? 'Terlambat',
-                        ),
+                        child: AtomText.bodyMedium(context.s.late),
                       ),
                       DropdownMenuItem(
                         value: 'absent',
-                        child: AtomText.bodyMedium(
-                          S.of(context)?.absent ?? 'Alpha',
-                        ),
+                        child: AtomText.bodyMedium(context.s.absent),
                       ),
                     ],
                     onChanged: onStatusChanged,

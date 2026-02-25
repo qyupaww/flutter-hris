@@ -4,7 +4,7 @@ import 'package:morpheme_flutter_lite/core/components/atoms/atom_spacing.dart';
 import 'package:morpheme_flutter_lite/core/components/atoms/atom_text.dart';
 import 'package:morpheme_flutter_lite/core/components/molecules/molecule_empty_state.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 import 'package:morpheme_flutter_lite/features/history/history/domain/entities/history_entity.dart';
 import 'package:morpheme_flutter_lite/features/history/history/presentation/components/history_attendance_item.dart';
@@ -89,7 +89,7 @@ class HistoryListWidget extends StatelessWidget {
           const AtomSpacing.vertical20(),
 
           AtomText.bodyLarge(
-            S.of(context)?.attendanceSummary ?? 'Daftar Kehadiran',
+            context.s.attendanceSummary,
             fontWeight: FontWeight.bold,
           ),
           const AtomSpacing.vertical16(),
@@ -116,7 +116,7 @@ class HistoryListWidget extends StatelessWidget {
                     ),
                     const AtomSpacing.vertical16(),
                     AtomButton.elevated(
-                      text: S.of(context)?.retry ?? 'Retry',
+                      text: context.s.retry,
                       onPressed: onRetry,
                     ),
                   ],
@@ -128,11 +128,8 @@ class HistoryListWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 40),
                 child: MoleculeEmptyState(
-                  text:
-                      S.of(context)?.emptyStateTitle ?? 'Data tidak ditemukan',
-                  description:
-                      S.of(context)?.emptyStateDescription ??
-                      'Belum ada riwayat absensi.',
+                  text: context.s.emptyStateTitle,
+                  description: context.s.emptyStateDescription,
                 ),
               ),
             )

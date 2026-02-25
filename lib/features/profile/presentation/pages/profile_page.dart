@@ -6,7 +6,7 @@ import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_c
 import 'package:morpheme_flutter_lite/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:morpheme_flutter_lite/features/profile/presentation/widgets/widgets.dart';
 import 'package:morpheme_flutter_lite/core/global_variable.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -25,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage>
     return Scaffold(
       appBar: AppBar(
         title: AtomText.bodyLarge(
-          S.of(context)?.profileTitle ?? 'Profile',
+          context.s.profileTitle,
           fontWeight: FontWeight.bold,
         ),
         centerTitle: true,
@@ -45,18 +45,18 @@ class _ProfilePageState extends State<ProfilePage>
                 children: [
                   AtomText.bodyMedium(
                     state.failure?.message ??
-                        (S.of(context)?.somethingWentWrong ?? 'Unknown error'),
+                        (context.s.somethingWentWrong),
                     color: context.color.error,
                   ),
                   const AtomSpacing.vertical16(),
                   AtomButton.elevated(
-                    text: S.of(context)?.retry ?? 'Retry',
+                    text: context.s.retry,
                     onPressed: () =>
                         context.read<ProfileCubit>().fetchProfile(),
                   ),
                   const AtomSpacing.vertical16(),
                   AtomButton.elevated(
-                    text: S.of(context)?.logoutButton ?? 'Logout',
+                    text: context.s.logoutButton,
                     onPressed: () =>
                         context.read<ProfileCubit>().onLogoutPressed(context),
                     style: ElevatedButton.styleFrom(

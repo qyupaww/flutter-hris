@@ -4,7 +4,7 @@ import 'package:morpheme_flutter_lite/core/components/atoms/atom_text.dart';
 import 'package:morpheme_flutter_lite/features/history/history/domain/entities/history_entity.dart';
 import 'package:morpheme_flutter_lite/features/history/history/presentation/bloc/history/history_bloc.dart';
 import 'package:morpheme_flutter_lite/features/history/history/presentation/cubit/history_filter_cubit.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/features/history/history/presentation/widgets/history_list_widget.dart';
 import 'package:morpheme_flutter_lite/core/global_variable.dart';
 
@@ -34,7 +34,7 @@ class _HistoryPageState extends State<HistoryPage>
       child: Scaffold(
         appBar: AppBar(
           title: AtomText.bodyLarge(
-            S.of(context)?.historyTitle ?? 'Riwayat Absensi',
+            context.s.historyTitle,
             fontWeight: FontWeight.bold,
           ),
           centerTitle: true,

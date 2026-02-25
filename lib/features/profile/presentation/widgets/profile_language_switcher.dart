@@ -4,7 +4,7 @@ import 'package:morpheme_base/morpheme_base.dart';
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
 import 'package:morpheme_flutter_lite/core/global_cubit/global_cubit.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 
 class ProfileLanguageSwitcher extends StatelessWidget {
@@ -19,7 +19,7 @@ class ProfileLanguageSwitcher extends StatelessWidget {
       ),
       child: ListTile(
         leading: Icon(Icons.language, color: context.color.primary),
-        title: AtomText.bodyMediumBold(S.of(context)?.language ?? 'Bahasa'),
+        title: AtomText.bodyMediumBold(context.s.language),
         trailing: DropdownButtonHideUnderline(
           child: DropdownButton<String>(
             value: context.select(

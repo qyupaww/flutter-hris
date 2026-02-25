@@ -3,7 +3,7 @@ import 'package:morpheme_base/morpheme_base.dart';
 
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 import 'package:morpheme_flutter_lite/features/profile/presentation/cubit/profile_cubit.dart';
 
@@ -16,7 +16,7 @@ class ProfileFooterSection extends StatelessWidget {
       children: [
         AtomButton.elevated(
           key: const Key('logout_button'),
-          text: S.of(context)?.logoutButton ?? 'Logout',
+          text: context.s.logoutButton,
           onPressed: () =>
               context.read<ProfileCubit>().onLogoutPressed(context),
           style: ElevatedButton.styleFrom(
@@ -30,7 +30,7 @@ class ProfileFooterSection extends StatelessWidget {
         ),
         const AtomSpacing.vertical16(),
         AtomText.bodyMediumBold(
-          S.of(context)?.nafanesiaWork ?? 'Nafanesia Work',
+          context.s.nafanesiaWork,
           textAlign: TextAlign.center,
           color: context.color.grey,
         ),

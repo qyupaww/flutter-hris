@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:morpheme_flutter_lite/core/components/atoms/atom_spacing.dart';
 import 'package:morpheme_flutter_lite/core/components/atoms/atom_text.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 import 'package:morpheme_flutter_lite/features/history/history/domain/entities/history_entity.dart';
 
@@ -44,22 +44,22 @@ class HistoryAttendanceItem extends StatelessWidget {
       case 'present':
         statusColor = context.color.success;
         statusIcon = Icons.check_circle;
-        statusLabel = S.of(context)?.onTime ?? 'Tepat Waktu';
+        statusLabel = context.s.onTime;
         break;
       case 'late':
         statusColor = context.color.error;
         statusIcon = Icons.warning_rounded;
-        statusLabel = S.of(context)?.late ?? 'Terlambat';
+        statusLabel = context.s.late;
         break;
       case 'absent':
         statusColor = context.color.warning;
         statusIcon = Icons.cancel;
-        statusLabel = S.of(context)?.absent ?? 'Alpha';
+        statusLabel = context.s.absent;
         break;
       default:
         statusColor = context.color.warning;
         statusIcon = Icons.hourglass_bottom;
-        statusLabel = S.of(context)?.notCheckedInYet ?? 'Belum Check-in';
+        statusLabel = context.s.notCheckedInYet;
     }
 
     String formattedDate = 'Hari Ini';
@@ -143,7 +143,7 @@ class HistoryAttendanceItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AtomText.bodySmall(
-                        S.of(context)?.timeInTitle ?? 'JAM MASUK',
+                        context.s.timeInTitle,
                         color: context.color.grey,
                       ),
                       const AtomSpacing.vertical4(),
@@ -164,7 +164,7 @@ class HistoryAttendanceItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       AtomText.bodySmall(
-                        S.of(context)?.timeOutTitle ?? 'JAM PULANG',
+                        context.s.timeOutTitle,
                         color: context.color.grey,
                       ),
                       const AtomSpacing.vertical4(),

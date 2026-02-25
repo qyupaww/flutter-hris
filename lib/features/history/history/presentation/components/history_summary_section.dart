@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:morpheme_flutter_lite/core/components/atoms/atom_spacing.dart';
 import 'package:morpheme_flutter_lite/core/components/atoms/atom_text.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
-import 'package:morpheme_flutter_lite/core/l10n/s.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 
 class HistorySummarySection extends StatelessWidget {
@@ -23,7 +23,7 @@ class HistorySummarySection extends StatelessWidget {
       children: [
         Expanded(
           child: _SummaryBox(
-            title: S.of(context)?.onTime ?? 'Tepat Waktu',
+            title: context.s.onTime,
             count: presentCount.toString(),
             icon: Icons.check_circle,
             iconColor: context.color.success,
@@ -32,7 +32,7 @@ class HistorySummarySection extends StatelessWidget {
         const AtomSpacing.horizontal12(),
         Expanded(
           child: _SummaryBox(
-            title: S.of(context)?.late ?? 'Terlambat',
+            title: context.s.late,
             count: lateCount.toString(),
             icon: Icons.warning_rounded,
             iconColor: context.color.error,
@@ -41,7 +41,7 @@ class HistorySummarySection extends StatelessWidget {
         const AtomSpacing.horizontal12(),
         Expanded(
           child: _SummaryBox(
-            title: S.of(context)?.absent ?? 'Alpha',
+            title: context.s.absent,
             count: absentCount.toString(),
             icon: Icons.cancel,
             iconColor: context.color.grey,
