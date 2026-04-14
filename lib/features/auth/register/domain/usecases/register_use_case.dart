@@ -1,0 +1,24 @@
+import 'package:morpheme_http/morpheme_http.dart';
+
+import '../../data/models/body/register_body.dart';
+import '../entities/register_entity.dart';
+import '../repositories/register_repository.dart';
+
+class RegisterUseCase implements UseCase<RegisterEntity, RegisterBody> {
+  RegisterUseCase({required this.repository});
+
+  final RegisterRepository repository;
+
+  @override
+  Future<Either<MorphemeFailure, RegisterEntity>> call(
+    RegisterBody body, {
+    Map<String, String>? headers,
+    CacheStrategy? cacheStrategy,
+  }) {
+    return repository.register(
+      body,
+      headers: headers,
+      cacheStrategy: cacheStrategy,
+    );
+  }
+}

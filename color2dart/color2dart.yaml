@@ -1,0 +1,41 @@
+# brightness can be 'light' or 'dark'
+
+light:
+  brightness: light
+  colors:
+    primary: "#F8B522"
+    secondary: "#FED933"
+    white: "#FFFFFF"
+    background: "#0B0B0C"
+    fillTextField: "#161618"
+    border: "#222224"
+    grey: "#B9B9B9"
+    bgGrey: "#33B9B9B9"
+    info: "#00AFC1"
+    bgInfo: "#DFFCFF"
+    error: "#F34545"
+    bgError: "#33F34545"
+    success: "#22C55E"
+    bgSuccess: "#3322C55E"
+    warning: "#F8B522"
+    bgWarning: "#33F8B522"
+
+dark:
+  brightness: dark
+  colors:
+    primary: "#F8B522"
+    secondary: "#FED933"
+    white: "#FFFFFF"
+    background: "#0B0B0C"
+    fillTextField: "#161618"
+    border: "#222224"
+    grey: "#B9B9B9"
+    bgGrey: "#33B9B9B9"
+    info: "#00AFC1"
+    bgInfo: "#DFFCFF"
+    error: "#F34545"
+    bgError: "#33F34545"
+    success: "#22C55E"
+    bgSuccess: "#3322C55E"
+    warning: "#F8B522"
+    bgWarning: "#33F8B522"

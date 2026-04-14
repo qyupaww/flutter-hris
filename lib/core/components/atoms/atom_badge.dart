@@ -1,55 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_hris/core/constants/constant_sizes.dart';
-import 'package:flutter_hris/core/themes/color_theme.dart';
-import 'package:flutter_hris/core/themes/theme.dart';
+import 'package:morpheme_flutter_lite/core/components/atoms/atom_text.dart';
+import 'package:morpheme_flutter_lite/core/constants/constant_radius.dart';
+import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
+import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 
-enum AtomBadgeVariant { primary, success, warning, danger, neutral }
+enum TypeBadge {
+  primary,
+  info,
+  success,
+  warning,
+  error,
+  grey;
+
+  Color color(BuildContext context) => switch (this) {
+    TypeBadge.primary => context.color.primary,
+    TypeBadge.info => context.color.info,
+    TypeBadge.success => context.color.success,
+    TypeBadge.warning => context.color.warning,
+    TypeBadge.error => context.color.error,
+    TypeBadge.grey => context.color.grey,
+  };
+
+  Color bgColor(BuildContext context) => switch (this) {
+    TypeBadge.primary => context.color.primary.withValues(alpha: .2),
+    TypeBadge.info => context.color.bgInfo,
+    TypeBadge.success => context.color.bgSuccess,
+    TypeBadge.warning => context.color.bgWarning,
+    TypeBadge.error => context.color.bgError,
+    TypeBadge.grey => context.color.bgGrey,
+  };
+}
 
 class AtomBadge extends StatelessWidget {
-  final String label;
-  final AtomBadgeVariant variant;
+  const AtomBadge.primary({super.key, required this.text})
+    : type = TypeBadge.primary;
+  const AtomBadge.info({super.key, required this.text}) : type = TypeBadge.info;
+  const AtomBadge.success({super.key, required this.text})
+    : type = TypeBadge.success;
+  const AtomBadge.warning({super.key, required this.text})
+    : type = TypeBadge.warning;
+  const AtomBadge.error({super.key, required this.text})
+    : type = TypeBadge.error;
+  const AtomBadge.grey({super.key, required this.text}) : type = TypeBadge.grey;
 
-  const AtomBadge({
-    super.key,
-    required this.label,
-    this.variant = AtomBadgeVariant.primary,
-  });
+  final String text;
+  final TypeBadge type;
 
   @override
   Widget build(BuildContext context) {
-    final baseColor = _getBadgeColor();
-
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+      padding: EdgeInsets.symmetric(horizontal: ConstantSizes.s8),
       decoration: BoxDecoration(
-        color: baseColor.withValues(alpha: 0.15),
-
-        border: Border.all(color: baseColor.withValues(alpha: 0.3), width: 1),
-
-        borderRadius: BorderRadius.circular(ConstantSizes.defaultRadius),
+        color: type.bgColor(context),
+        borderRadius: BorderRadius.circular(ConstantRadius.full),
       ),
-      child: Text(
-        label,
-        style: MyTheme.style.medium.copyWith(color: baseColor, fontSize: 12.sp),
-      ),
+      child: AtomText.bodySmall(text, color: type.color(context)),
     );
-  }
-
-  Color _getBadgeColor() {
-    final colors = PColor();
-
-    switch (variant) {
-      case AtomBadgeVariant.primary:
-        return colors.primary;
-      case AtomBadgeVariant.success:
-        return colors.success;
-      case AtomBadgeVariant.warning:
-        return colors.warning;
-      case AtomBadgeVariant.danger:
-        return colors.danger;
-      case AtomBadgeVariant.neutral:
-        return colors.grey;
-    }
   }
 }

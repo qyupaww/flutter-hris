@@ -1,0 +1,14 @@
+{
+  "@@locale": "id",
+  "nafanesiaWork": "Nafanesia Work",
+  "engineeringExcellence": "Keunggulan Teknologi",
+  "language": "Bahasa",
+  "theme": "Tema",
+  "oke": "Oke",
+  "cancel": "Batal",
+  "agree": "Setuju",
+  "somethingWentWrong": "Ada kesalahan pada sistem",
+  "noInternet": "Tidak ada internet",
+  "emptyStateDescription": "Maaf, kami tidak menemukan hasil untuk pencarian Anda. Coba gunakan kata kunci lain.",
+  "emptyStateTitle": "Hasil pencarian tidak ditemukan"
+}

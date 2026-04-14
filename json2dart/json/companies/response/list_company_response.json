@@ -1,0 +1,18 @@
+{
+    "data": [
+        {
+            "created_at": "string",
+            "id": 0,
+            "latitude": 0.0,
+            "longitude": 0.0,
+            "max_radius": 0,
+            "name": "string",
+            "updated_at": "string"
+        }
+    ],
+    "meta": {
+        "code": 0,
+        "message": "string",
+        "status": "string"
+    }
+}
