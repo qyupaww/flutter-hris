@@ -6,6 +6,7 @@ import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_c
 import 'package:morpheme_flutter_lite/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:morpheme_flutter_lite/features/profile/presentation/widgets/widgets.dart';
 import 'package:morpheme_flutter_lite/core/global_variable.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -23,7 +24,10 @@ class _ProfilePageState extends State<ProfilePage>
   Widget buildWidget(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const AtomText.bodyLarge('Profile', fontWeight: FontWeight.bold),
+        title: AtomText.bodyLarge(
+          context.s.profileTitle,
+          fontWeight: FontWeight.bold,
+        ),
         centerTitle: true,
         backgroundColor: context.color.background,
         elevation: 0,
@@ -40,18 +44,19 @@ class _ProfilePageState extends State<ProfilePage>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AtomText.bodyMedium(
-                    state.failure?.message ?? 'Unknown error',
+                    state.failure?.message ??
+                        (context.s.somethingWentWrong),
                     color: context.color.error,
                   ),
                   const AtomSpacing.vertical16(),
                   AtomButton.elevated(
-                    text: 'Retry',
+                    text: context.s.retry,
                     onPressed: () =>
                         context.read<ProfileCubit>().fetchProfile(),
                   ),
                   const AtomSpacing.vertical16(),
                   AtomButton.elevated(
-                    text: 'Logout',
+                    text: context.s.logoutButton,
                     onPressed: () =>
                         context.read<ProfileCubit>().onLogoutPressed(context),
                     style: ElevatedButton.styleFrom(
@@ -81,31 +86,11 @@ class _ProfilePageState extends State<ProfilePage>
                 const AtomSpacing.vertical32(),
                 ProfileInfoSection(user: user),
                 const AtomSpacing.vertical16(),
-                AtomButton.elevated(
-                  key: const Key('logout_button'),
-                  text: 'Logout',
-                  onPressed: () =>
-                      context.read<ProfileCubit>().onLogoutPressed(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.color.bgError,
-                    foregroundColor: context.color.error,
-                    minimumSize: const Size(
-                      double.infinity,
-                      ConstantSizes.heightButton,
-                    ),
-                  ),
-                ),
+                const ProfileThemeSwitcher(),
                 const AtomSpacing.vertical16(),
-                AtomText.bodyMediumBold(
-                  'Nafanesia Work',
-                  textAlign: TextAlign.center,
-                  color: context.color.grey,
-                ),
-                AtomText.bodySmall(
-                  'v1.0.0 (Build 2026.01.05)',
-                  textAlign: TextAlign.center,
-                  color: context.color.grey,
-                ),
+                const ProfileLanguageSwitcher(),
+                const AtomSpacing.vertical16(),
+                const ProfileFooterSection(),
               ],
             ),
           );

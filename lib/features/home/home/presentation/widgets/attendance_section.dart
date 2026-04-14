@@ -3,6 +3,7 @@ import 'package:morpheme_base/morpheme_base.dart';
 import 'package:morpheme_flutter_lite/core/components/atoms/atoms.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_radius.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 import 'package:morpheme_flutter_lite/features/home/home/presentation/cubit/home_cubit.dart';
 
@@ -15,33 +16,36 @@ class AttendanceSection extends StatelessWidget {
       builder: (context, state) {
         final String badgeText;
         if (state.isCheckedIn && state.isCheckedOut) {
-          badgeText = 'Sudah Absen';
+          badgeText = context.s.alreadyAttended;
         } else if (state.isCheckedIn) {
-          badgeText = 'Sudah Masuk';
+          badgeText = context.s.alreadyCheckedIn;
         } else {
-          badgeText = 'Belum Absen';
+          badgeText = context.s.notAttendedYet;
         }
 
         final checkInTime = state.checkInTime ?? '--:--';
         final checkOutTime = state.checkOutTime ?? '--:--';
         final checkInStatus = state.isCheckedIn
-            ? (state.checkInStatus ?? 'Sudah Absen')
-            : 'Belum Absen';
+            ? (state.checkInStatus ??
+                  (context.s.alreadyAttended))
+            : (context.s.notAttendedYet);
         final checkOutStatus = state.isCheckedOut
-            ? (state.checkOutStatus ?? 'Sudah Pulang')
-            : 'Belum Absen';
+            ? (state.checkOutStatus ??
+                  (context.s.alreadyCheckedOut))
+            : (context.s.notAttendedYet);
 
         final String buttonText;
         final VoidCallback? onPressed;
         if (state.isCheckedIn && state.isCheckedOut) {
-          buttonText = 'Sudah Absen Hari Ini';
+          buttonText =
+              context.s.alreadyAttendedToday;
           onPressed = null;
         } else if (state.isCheckedIn) {
-          buttonText = 'Check Out Sekarang';
+          buttonText = context.s.checkOutNow;
           onPressed = () =>
               context.read<HomeCubit>().onAttendancePressed(context);
         } else {
-          buttonText = 'Check In Sekarang';
+          buttonText = context.s.checkInNow;
           onPressed = () =>
               context.read<HomeCubit>().onAttendancePressed(context);
         }
@@ -59,7 +63,9 @@ class AttendanceSection extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AtomText.bodyMediumBold('Status Absensi'),
+                    AtomText.bodyMediumBold(
+                      context.s.statusAttendance,
+                    ),
                     AtomBadge.primary(text: badgeText),
                   ],
                 ),
@@ -76,7 +82,7 @@ class AttendanceSection extends StatelessWidget {
                         children: [
                           Expanded(
                             child: _StatusAttendance(
-                              title: 'JAM MASUK',
+                              title: context.s.timeInTitle,
                               time: checkInTime,
                               status: checkInStatus,
                             ),
@@ -87,7 +93,8 @@ class AttendanceSection extends StatelessWidget {
                           ),
                           Expanded(
                             child: _StatusAttendance(
-                              title: 'JAM PULANG',
+                              title:
+                                  context.s.timeOutTitle,
                               time: checkOutTime,
                               status: checkOutStatus,
                             ),
@@ -97,7 +104,7 @@ class AttendanceSection extends StatelessWidget {
                     ),
                     AtomButton.elevated(text: buttonText, onPressed: onPressed),
                     AtomText.bodySmall(
-                      'Pastikan Anda berada di area kantor sebelum melakukan absensi',
+                      context.s.attendanceWarning,
                       textAlign: TextAlign.center,
                     ),
                   ],

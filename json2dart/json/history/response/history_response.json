@@ -1,0 +1,15 @@
+{
+  "data": [
+    {
+      "check_in_time": "08:00",
+      "check_out_time": "17:00",
+      "date": "2026-01-04",
+      "status": "ON_TIME"
+    }
+  ],
+  "meta": {
+    "code": 200,
+    "message": "success",
+    "status": "success"
+  }
+}

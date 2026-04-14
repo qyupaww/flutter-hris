@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 
 class SelfieLabel extends StatelessWidget {
@@ -15,11 +16,11 @@ class SelfieLabel extends StatelessWidget {
         SizedBox(width: ConstantSizes.s12),
         Expanded(
           child: AtomText.bodyLargeSemiBold(
-            'Bukti Foto Selfie',
+            context.s.selfiePhotoEvidence,
             color: context.color.white,
           ),
         ),
-        AtomBadge.grey(text: 'Wajib'),
+        AtomBadge.grey(text: context.s.required),
       ],
     );
   }

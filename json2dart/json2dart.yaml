@@ -89,6 +89,13 @@ json2dart:
       body: json2dart/json/companies/body/list_company_body.json
       response: json2dart/json/companies/response/list_company_response.json
       cache_strategy: async_or_cache
+    .history: &history
+      base_url: *base_url
+      path: /api/v1/attendance/history
+      method: get
+      body: json2dart/json/history/body/history_body.json
+      response: json2dart/json/history/response/history_response.json
+      cache_strategy: just_async
 
 auth: # feature
   login: # page 
@@ -96,3 +103,7 @@ auth: # feature
   register:
     list_company: *list_company
     register: *register
+
+history:
+  history:
+    history: *history

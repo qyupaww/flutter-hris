@@ -3,6 +3,7 @@ import 'package:morpheme_base/morpheme_base.dart';
 import 'package:morpheme_cached_network_image/morpheme_cached_network_image.dart';
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 import 'package:morpheme_flutter_lite/features/home/home/presentation/cubit/home_cubit.dart';
 
@@ -20,7 +21,10 @@ class HeaderSection extends StatelessWidget {
             crossAxisAlignment: .start,
             spacing: ConstantSizes.s2,
             children: [
-              AtomText.bodyMedium('Selamat Datang', color: context.color.grey),
+              AtomText.bodyMedium(
+                context.s.welcome,
+                color: context.color.grey,
+              ),
               AtomText.heading2(user?.fullName ?? '-'),
               AtomBadge.primary(text: user?.division ?? '-'),
             ],

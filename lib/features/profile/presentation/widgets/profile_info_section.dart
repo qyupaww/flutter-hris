@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_radius.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 import 'package:morpheme_flutter_lite/features/profile/domain/entities/profile_entity.dart';
 import 'package:morpheme_flutter_lite/features/profile/presentation/components/profile_info_item.dart';
@@ -23,25 +24,25 @@ class ProfileInfoSection extends StatelessWidget {
         children: [
           ProfileInfoItem(
             icon: Icons.badge,
-            label: 'NIP',
+            label: context.s.profileNip,
             value: user.nip ?? '-',
           ),
           Divider(height: 1, thickness: 1, color: context.color.border),
           ProfileInfoItem(
             icon: Icons.business,
-            label: 'Division',
+            label: context.s.profileDivision,
             value: user.division ?? '-',
           ),
           Divider(height: 1, thickness: 1, color: context.color.border),
           ProfileInfoItem(
             icon: Icons.email,
-            label: 'Email',
+            label: context.s.profileEmail,
             value: user.email ?? '-',
           ),
           Divider(height: 1, thickness: 1, color: context.color.border),
           ProfileInfoItem(
             icon: Icons.calendar_today,
-            label: 'Joined',
+            label: context.s.profileJoined,
             value: _formatDate(user.createdAt),
           ),
         ],

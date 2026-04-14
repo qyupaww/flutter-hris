@@ -27,7 +27,7 @@ class ProfileHeaderSection extends StatelessWidget {
         AtomText.heading2(user.fullName ?? '-', textAlign: TextAlign.center),
         const AtomSpacing.vertical4(),
         AtomText.bodyMedium(
-          user.role ?? '-',
+          user.division ?? '-',
           color: context.color.grey,
           textAlign: TextAlign.center,
         ),

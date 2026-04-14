@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:morpheme_flutter_lite/core/components/components.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_radius.dart';
 import 'package:morpheme_flutter_lite/core/constants/constant_sizes.dart';
+import 'package:morpheme_flutter_lite/core/extensions/localization_extension.dart';
 import 'package:morpheme_flutter_lite/core/themes/morpheme_colors/src/morpheme_color.dart';
 import 'package:morpheme_flutter_lite/features/home/attendance/components/selfie_label.dart';
 
@@ -66,11 +67,11 @@ class SelfiePlaceholder extends StatelessWidget {
                         spacing: ConstantSizes.s4,
                         children: [
                           AtomText.bodyLargeSemiBold(
-                            'Ketuk untuk ambil foto',
+                            context.s.tapToTakePhotos,
                             color: context.color.white,
                           ),
                           AtomText.bodySmall(
-                            'Pastikan wajah terlihat jelas tanpa masker',
+                            context.s.makeSureFaceVisible,
                             color: context.color.grey,
                           ),
                         ],
@@ -80,7 +81,7 @@ class SelfiePlaceholder extends StatelessWidget {
           ),
         ),
         AtomText.bodySmall(
-          'Data lokasi dan foto anda akan disimpan aman untuk keperluan validasi absensi perusahaan.',
+          context.s.locationDataSubDisclaimer,
           color: context.color.grey,
           textAlign: TextAlign.center,
         ),
